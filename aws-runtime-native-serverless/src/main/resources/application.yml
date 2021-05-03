@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: aws-runtime-native-serverless
+    default-charset: UTF-8
+
+gson:
+  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX
