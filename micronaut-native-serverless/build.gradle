@@ -30,7 +30,6 @@ spotless {
 
 micronaut {
     version "2.5.3"
-    testRuntime "junit5"
     processing {
         incremental true
         module project.name
@@ -48,11 +47,9 @@ dependencies {
 
     compileOnly "org.graalvm.nativeimage:svm"
 
-    runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
     compile "org.jetbrains:annotations:20.1.0"
 
-    compile "io.micronaut:micronaut-runtime"
-    compile "io.micronaut:micronaut-validation"
+    compile "org.slf4j:slf4j-simple:1.7.30"
     compile "io.micronaut.aws:micronaut-function-aws"
     compile "io.micronaut.aws:micronaut-function-aws-custom-runtime"
 
