@@ -7,7 +7,7 @@ import lombok.Data;
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(value = { UserResponse.class }, accessType = { TypeHint.AccessType.ALL_PUBLIC })
+@TypeHint(value = { UserResponse.class }, accessType = { TypeHint.AccessType.ALL_DECLARED_FIELDS })
 @Data
 public class UserResponse {
 
