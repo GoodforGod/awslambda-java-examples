@@ -1,4 +1,4 @@
-package io.lambda;
+package io.aws.lambda;
 
 import io.micronaut.core.annotation.TypeHint;
 import lombok.Data;

@@ -1,9 +1,8 @@
-package io.lambda;
+package io.aws.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import io.aws.lambda.runtime.Lambda;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Introspected;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,12 +11,12 @@ import java.util.UUID;
 
 @Introspected
 @Singleton
-public class HelloWorldLambda implements Lambda<Response, User> {
+public class HelloWorldLambda implements RequestHandler<User, Response> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public Response handle(User user, @NotNull Context context) {
+    public Response handleRequest(User user, Context context) {
         logger.info("Processing User with name: {}", user.getName());
 
         return new Response(UUID.randomUUID().toString(), "Hello - " + user.getName());

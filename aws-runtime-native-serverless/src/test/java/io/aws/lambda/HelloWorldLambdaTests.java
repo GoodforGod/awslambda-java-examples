@@ -1,4 +1,4 @@
-package io.lambda;
+package io.aws.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import io.aws.lambda.runtime.LambdaContext;
