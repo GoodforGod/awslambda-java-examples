@@ -12,7 +12,6 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
-    jcenter()
 }
 
 group = groupId
@@ -38,7 +37,7 @@ configurations {
 }
 
 micronaut {
-    version "2.5.0"
+    version "2.5.5"
     processing {
         incremental true
         module project.name

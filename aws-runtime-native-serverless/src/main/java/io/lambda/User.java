@@ -1,18 +1,15 @@
 package io.lambda;
 
 import io.micronaut.core.annotation.TypeHint;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
 @TypeHint(value = { User.class }, accessType = { TypeHint.AccessType.ALL_PUBLIC })
-@Getter
-@Setter
+@Data
 public class User {
 
-    private String id;
     private String name;
 }
