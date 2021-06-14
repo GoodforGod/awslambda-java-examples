@@ -1,4 +1,4 @@
-package io.micronaut.aws;
+package io.aws.lambda.micronaut;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Nullable;
@@ -20,6 +20,6 @@ public class AwsLambdaRuntime
     @Override
     @Nullable
     protected RequestHandler<Book, BookSaved> createRequestHandler(String... args) {
-        return new BookLambda();
+        return new HelloWorldLambda();
     }
 }

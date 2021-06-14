@@ -1,4 +1,4 @@
-package io.micronaut.aws;
+package io.aws.lambda.micronaut;
 
 /**
  * @author GoodforGod

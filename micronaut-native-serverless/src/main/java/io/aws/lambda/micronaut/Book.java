@@ -1,4 +1,4 @@
-package io.micronaut.aws;
+package io.aws.lambda.micronaut;
 
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.core.annotation.NonNull;
