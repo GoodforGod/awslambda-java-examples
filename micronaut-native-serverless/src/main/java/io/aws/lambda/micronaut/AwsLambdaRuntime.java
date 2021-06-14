@@ -7,7 +7,7 @@ import io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime;
 import java.net.MalformedURLException;
 
 public class AwsLambdaRuntime
-        extends AbstractMicronautLambdaRuntime<Book, BookSaved, Book, BookSaved> {
+        extends AbstractMicronautLambdaRuntime<User, UserResponse, User, UserResponse> {
 
     public static void main(String[] args) {
         try {
@@ -19,7 +19,7 @@ public class AwsLambdaRuntime
 
     @Override
     @Nullable
-    protected RequestHandler<Book, BookSaved> createRequestHandler(String... args) {
+    protected RequestHandler<User, UserResponse> createRequestHandler(String... args) {
         return new HelloWorldLambda();
     }
 }

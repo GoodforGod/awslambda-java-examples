@@ -11,14 +11,14 @@ import java.util.UUID;
 
 @Introspected
 @Singleton
-public class HelloWorldLambda implements RequestHandler<User, Response> {
+public class HelloWorldLambda implements RequestHandler<User, UserResponse> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public Response handleRequest(User user, Context context) {
+    public UserResponse handleRequest(User user, Context context) {
         logger.info("Processing User with name: {}", user.getName());
 
-        return new Response(UUID.randomUUID().toString(), "Hello - " + user.getName());
+        return new UserResponse(UUID.randomUUID().toString(), "Hello - " + user.getName());
     }
 }

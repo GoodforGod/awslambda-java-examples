@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.UUID;
 import java.util.function.Function;
 
 @SpringBootApplication
@@ -14,7 +15,7 @@ public class AwsLambdaRuntime {
     }
 
     @Bean
-    public Function<String, String> handle() {
-        return String::toUpperCase;
+    public Function<User, UserResponse> handle() {
+        return user -> new UserResponse(UUID.randomUUID().toString(), "Hello - " + user.getName());
     }
 }

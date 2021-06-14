@@ -7,9 +7,9 @@ import lombok.Data;
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(value = { Response.class }, accessType = { TypeHint.AccessType.ALL_PUBLIC })
+@TypeHint(value = { UserResponse.class }, accessType = { TypeHint.AccessType.ALL_PUBLIC })
 @Data
-public class Response {
+public class UserResponse {
 
     private final String id;
     private final String message;

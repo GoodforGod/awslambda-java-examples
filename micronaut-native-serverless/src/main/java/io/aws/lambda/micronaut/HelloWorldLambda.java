@@ -8,15 +8,14 @@ import org.slf4j.LoggerFactory;
 import java.util.UUID;
 
 @Introspected
-public class HelloWorldLambda extends MicronautRequestHandler<Book, BookSaved> {
+public class HelloWorldLambda extends MicronautRequestHandler<User, UserResponse> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
-    public BookSaved execute(Book input) {
-        logger.info("Processing input book...");
-        return new BookSaved()
-                .setName(input.getName())
-                .setIsbn(UUID.randomUUID().toString());
+    public UserResponse execute(User user) {
+        logger.info("Processing User with name: {}", user.getName());
+
+        return new UserResponse(UUID.randomUUID().toString(), "Hello - " + user.getName());
     }
 }
