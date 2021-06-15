@@ -1,21 +1,24 @@
 package io.aws.lambda.spring;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cloud.function.context.FunctionRegistration;
+import org.springframework.cloud.function.context.FunctionalSpringApplication;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.nativex.hint.NativeHint;
 
-import java.util.UUID;
-import java.util.function.Function;
-
-@SpringBootApplication
-public class AwsLambdaRuntime {
+@SpringBootConfiguration
+public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericApplicationContext> {
 
     public static void main(String[] args) {
-        SpringApplication.run(AwsLambdaRuntime.class, args);
+        FunctionalSpringApplication.run(AwsLambdaRuntime.class, args);
     }
 
-    @Bean
-    public Function<User, UserResponse> handle() {
-        return user -> new UserResponse(UUID.randomUUID().toString(), "Hello - " + user.getName());
+    @Override
+    public void initialize(GenericApplicationContext context) {
+        context.registerBean("requestHandler",
+                FunctionRegistration.class,
+                () -> new FunctionRegistration<>(new RequestHandler()).type(RequestHandler.class));
     }
 }
