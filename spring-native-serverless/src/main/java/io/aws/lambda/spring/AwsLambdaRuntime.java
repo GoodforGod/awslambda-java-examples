@@ -2,6 +2,7 @@ package io.aws.lambda.spring;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.cloud.function.context.FunctionRegistration;
+import org.springframework.cloud.function.context.FunctionType;
 import org.springframework.cloud.function.context.FunctionalSpringApplication;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.support.GenericApplicationContext;
@@ -15,8 +16,8 @@ public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericAp
 
     @Override
     public void initialize(GenericApplicationContext context) {
-        context.registerBean("requestHandler",
+        context.registerBean(RequestHandler.FUNCTION_NAME,
                 FunctionRegistration.class,
-                () -> new FunctionRegistration<>(new RequestHandler()).type(RequestHandler.class));
+                () -> new FunctionRegistration<>(new RequestHandler()).type(FunctionType.from(User.class).to(UserResponse.class)));
     }
 }
