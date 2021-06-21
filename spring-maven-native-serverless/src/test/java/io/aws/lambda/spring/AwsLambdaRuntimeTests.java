@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.function.context.FunctionCatalog;
 import org.springframework.cloud.function.context.test.FunctionalSpringBootTest;
-import reactor.core.Fuseable;
-import reactor.core.publisher.Flux;
 
 @Disabled
 @FunctionalSpringBootTest
@@ -26,7 +24,7 @@ class AwsLambdaRuntimeTests extends Assertions {
     response.setName("Bob");
     response.setSaved(true);
 
-    final Function<Request, Response> function = catalog.lookup(Function.class, RequestFunction.FUNCTION_NAME);
+    final Function<Request, Response> function = catalog.lookup(Function.class, RequestHandler.FUNCTION_NAME);
 
     final Request request = new Request();
     request.setName("Bob");
