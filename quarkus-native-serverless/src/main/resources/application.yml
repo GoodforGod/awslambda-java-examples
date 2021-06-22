@@ -1,0 +1,7 @@
+quarkus:
+  application:
+    name: quarkus-native-serverless
+    default-charset: UTF-8
+
+jackson:
+  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX
