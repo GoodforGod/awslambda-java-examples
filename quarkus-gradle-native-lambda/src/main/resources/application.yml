@@ -1,6 +1,6 @@
 quarkus:
   application:
-    name: quarkus-native-serverless
+    name: quarkus-gradle-native-lambda
     default-charset: UTF-8
 
 jackson:
