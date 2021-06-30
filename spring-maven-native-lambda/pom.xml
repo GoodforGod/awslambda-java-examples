@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>io.aws.lambda.spring</groupId>
-    <artifactId>spring-maven-native-serverless</artifactId>
+    <artifactId>spring-maven-native-lambda</artifactId>
     <version>0.9.0-SNAPSHOT</version>
-    <name>spring-maven-native-serverless</name>
+    <name>spring-maven-native-lambda</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

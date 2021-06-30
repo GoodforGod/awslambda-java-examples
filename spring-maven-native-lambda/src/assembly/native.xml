@@ -22,7 +22,7 @@
 			<useDefaultExcludes>true</useDefaultExcludes>
 			<fileMode>0775</fileMode>
 			<includes>
-				<include>spring-maven-native-serverless</include>
+				<include>spring-maven-native-lambda</include>
 			</includes>
 		</fileSet>
 	</fileSets>
