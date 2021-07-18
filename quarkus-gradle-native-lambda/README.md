@@ -1,6 +1,6 @@
 # Quarkus Template
 
-Template for Micronaut 2 service for Java 11+.
+Template for Quarkus.
 
 ## Features
 - Micronaut Plugin for BOM and version management.
