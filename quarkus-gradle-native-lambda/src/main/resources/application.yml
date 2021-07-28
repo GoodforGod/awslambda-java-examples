@@ -1,7 +1,3 @@
 quarkus:
-  application:
-    name: quarkus-gradle-native-lambda
-    default-charset: UTF-8
-
-jackson:
-  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+  lambda:
+    handler: hello-world
