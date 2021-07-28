@@ -2,7 +2,8 @@ plugins {
     id "java"
     id "jacoco"
 
-    id "org.sonarqube" version "3.1.1"
+    id "io.quarkus" version "2.0.3.Final"
+    id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "5.11.0"
     id "com.github.johnrengelman.shadow" version "6.1.0"
 }
@@ -39,6 +40,14 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.20"
     annotationProcessor "org.projectlombok:lombok:1.18.20"
 
+    compile enforcedPlatform("io.quarkus:quarkus-bom:2.1.0.Final")
+    compile 'io.quarkus:quarkus-resteasy'
+    compile 'io.quarkus:quarkus-amazon-lambda'
+
+    testCompile"io.quarkus:quarkus-test-amazon-lambda"
+
+    testCompile 'io.quarkus:quarkus-junit5'
+    testCompile 'io.rest-assured:rest-assured'
 }
 
 test {
@@ -52,6 +61,13 @@ test {
             "SECURITY_ENABLED"    : "false",
             "LAMBDA_LOGGING_LEVEL": "DEBUG",
     ])
+}
+
+quarkusBuild {
+    nativeArgs {
+        containerBuild = true
+        buildImage = "quay.io/quarkus/ubi-quarkus-native-image:21.2.0-java11"
+    }
 }
 
 jar.enabled = true

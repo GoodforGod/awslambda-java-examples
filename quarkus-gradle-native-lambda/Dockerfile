@@ -1,4 +1,4 @@
-FROM goodforgod/amazonlinux-graalvm:21.0.0.2
+FROM goodforgod/amazonlinux-graalvm:21.2.0
 
 ADD build/libs/*all.jar build/libs/lambda.jar
 
