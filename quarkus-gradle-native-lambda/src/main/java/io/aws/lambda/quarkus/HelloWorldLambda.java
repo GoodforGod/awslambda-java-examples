@@ -3,8 +3,9 @@ package io.aws.lambda.quarkus;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.UUID;
 
 /**
  * Please Add Description Here.
@@ -13,10 +14,18 @@ import java.util.UUID;
  * @since 28.07.2021
  */
 @Named("hello-world")
-public class HelloWorldLambda implements RequestHandler<User, Response> {
+@ApplicationScoped
+public class HelloWorldLambda implements RequestHandler<Request, Response> {
+
+    private final ResponseService responseService;
+
+    @Inject
+    public HelloWorldLambda(ResponseService responseService) {
+        this.responseService = responseService;
+    }
 
     @Override
-    public Response handleRequest(User user, Context context) {
-        return new Response(UUID.randomUUID().toString(), "Hello - " + user.getName());
+    public Response handleRequest(Request request, Context context) {
+        return responseService.getResponse(request);
     }
 }

@@ -7,7 +7,7 @@ import lombok.Data;
  * @since 21.3.2021
  */
 @Data
-public class User {
+public class Request {
 
     private String name;
 }
