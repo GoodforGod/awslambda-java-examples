@@ -24,7 +24,7 @@ class AwsLambdaRuntimeTests extends Assertions {
     response.setName("Bob");
     response.setSaved(true);
 
-    final Function<Request, Response> function = catalog.lookup(Function.class, RequestHandler.FUNCTION_NAME);
+    final Function<Request, Response> function = catalog.lookup(Function.class, HelloWorldLambda.FUNCTION_NAME);
 
     final Request request = new Request();
     request.setName("Bob");

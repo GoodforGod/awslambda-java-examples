@@ -18,8 +18,9 @@ public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericAp
 
     @Override
     public void initialize(final GenericApplicationContext context) {
-        context.registerBean(RequestHandler.FUNCTION_NAME,
+        final HelloWorldLambda helloWorldLambda = context.getBean(HelloWorldLambda.class);
+        context.registerBean(HelloWorldLambda.FUNCTION_NAME,
                 FunctionRegistration.class,
-                () -> new FunctionRegistration<>(new RequestHandler()).type(FunctionType.from(String.class).to(String.class)));
+                () -> new FunctionRegistration<>(helloWorldLambda).type(FunctionType.from(String.class).to(String.class)));
     }
 }

@@ -7,6 +7,6 @@ import java.io.Serializable;
 @Data
 public class Response implements Serializable {
 
-    private String name;
-    private boolean saved;
+    private final String id;
+    private final String message;
 }
