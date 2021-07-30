@@ -40,7 +40,7 @@ dependencies {
     compileOnly "org.projectlombok:lombok:1.18.20"
     annotationProcessor "org.projectlombok:lombok:1.18.20"
 
-    compile enforcedPlatform("io.quarkus:quarkus-bom:2.1.0.Final")
+    compile enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
     compile 'io.quarkus:quarkus-resteasy'
     compile 'io.quarkus:quarkus-amazon-lambda'
 

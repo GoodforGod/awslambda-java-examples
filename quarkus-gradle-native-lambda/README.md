@@ -1,4 +1,4 @@
-# Quarkus Template
+# Quarkus Lambda
 
 Template for Quarkus.
 
@@ -8,3 +8,9 @@ Template for Quarkus.
 - .gitignore and .gitattributes for proper ignore and symbols check.
 - .editorconfig for simple configs code style and encoding UTF-8.
 - Proper Gradle and Gradle Wrapper configuration.
+
+## Build
+
+```shell
+./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
+```
