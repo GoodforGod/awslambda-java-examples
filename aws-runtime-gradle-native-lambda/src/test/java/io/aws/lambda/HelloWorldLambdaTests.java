@@ -21,7 +21,8 @@ class HelloWorldLambdaTests extends Assertions {
     void handleSuccess() {
         try (final ApplicationContext context = ApplicationContext.run()) {
             final Converter converter = context.getBean(Converter.class);
-            final EventHandler handler = new RawEventHandler(new HelloWorldLambda(), converter);
+            final HelloWorldLambda lambda = context.getBean(HelloWorldLambda.class);
+            final EventHandler handler = new RawEventHandler(lambda, converter);
             final String payload = "{\"context\":{\"requestId\":\"ecbc9432-a41c-4b71-bf7b-832b391e9e1b\"},\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false}";
 
             final Context requestContext = LambdaContext.ofRequestId(UUID.randomUUID().toString());

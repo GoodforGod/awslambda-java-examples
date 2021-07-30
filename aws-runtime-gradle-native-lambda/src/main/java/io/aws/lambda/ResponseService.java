@@ -1,4 +1,4 @@
-package io.aws.lambda.micronaut;
+package io.aws.lambda;
 
 import javax.inject.Singleton;
 import java.util.UUID;

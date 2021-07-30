@@ -3,7 +3,7 @@ plugins {
     id "jacoco"
     id "application"
 
-    id "io.micronaut.application" version "1.5.0"
+    id "io.micronaut.application" version "2.0.2"
     id "org.sonarqube" version "3.1.1"
     id "com.diffplug.spotless" version "5.11.0"
     id "com.github.johnrengelman.shadow" version "6.1.0"
@@ -37,12 +37,12 @@ configurations {
 }
 
 micronaut {
-    version "2.5.5"
+    version "2.5.9"
     processing {
         incremental true
         module project.name
         group project.group
-        annotations "io.lambda.*"
+        annotations "io.aws.lambda.*"
     }
 }
 
