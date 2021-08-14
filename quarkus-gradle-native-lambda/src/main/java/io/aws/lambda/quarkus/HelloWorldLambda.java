@@ -8,8 +8,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
- * Please Add Description Here.
- *
  * @author Anton Kurako (GoodforGod)
  * @since 28.07.2021
  */

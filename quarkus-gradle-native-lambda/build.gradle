@@ -5,7 +5,6 @@ plugins {
     id "io.quarkus" version "2.0.3.Final"
     id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "5.11.0"
-    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 repositories {
@@ -28,39 +27,31 @@ spotless {
     }
 }
 
-configurations {
-    all {
-        resolutionStrategy {
-            cacheChangingModulesFor(1000, "seconds") // refresh cache for snapshots
-        }
-    }
-}
-
 dependencies {
     compileOnly "org.projectlombok:lombok:1.18.20"
     annotationProcessor "org.projectlombok:lombok:1.18.20"
 
-    compile enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
-    compile 'io.quarkus:quarkus-resteasy'
-    compile 'io.quarkus:quarkus-amazon-lambda'
+    implementation enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-amazon-lambda'
 
-    testCompile"io.quarkus:quarkus-test-amazon-lambda"
+    testImplementation "io.quarkus:quarkus-test-amazon-lambda"
 
-    testCompile 'io.quarkus:quarkus-junit5'
-    testCompile 'io.rest-assured:rest-assured'
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
 }
 
 test {
     useJUnitPlatform()
     testLogging {
-        events "passed", "skipped", "failed"
-        exceptionFormat "full"
+        events("passed", "skipped", "failed")
+        exceptionFormat("full")
     }
 
-    environment([
-            "SECURITY_ENABLED"    : "false",
-            "LAMBDA_LOGGING_LEVEL": "DEBUG",
-    ])
+    reports {
+        html.enabled(false)
+        junitXml.enabled(false)
+    }
 }
 
 quarkusBuild {
@@ -70,25 +61,10 @@ quarkusBuild {
     }
 }
 
-jar.enabled = true
-shadowJar {
-    mergeServiceFiles()
-    manifest {
-        attributes "Main-Class":  "io.aws.lambda.quarkus.AwsLambdaRuntime"
-        attributes "Implementation-Version": artifactVersion
-        attributes "Build-Version": buildNumber
-    }
-}
-
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
     options.incremental = true
     options.fork = true
-}
-
-tasks.withType(Test) {
-    reports.html.enabled = false
-    reports.junitXml.enabled = false
 }
 
 javadoc {
@@ -101,7 +77,7 @@ javadoc {
 check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
-        xml.enabled true
-        html.destination file("${buildDir}/jacocoHtml")
+        xml.enabled(true)
+        html.destination(file("${buildDir}/jacocoHtml"))
     }
 }
