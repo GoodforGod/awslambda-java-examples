@@ -7,9 +7,9 @@ import org.springframework.nativex.hint.TypeHint;
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(types = { UserResponse.class })
+@TypeHint(types = { Response.class })
 @Data
-public class UserResponse {
+public class Response {
 
     private final String id;
     private final String message;
