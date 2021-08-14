@@ -1,14 +1,13 @@
-FROM goodforgod/amazonlinux-graalvm:21.0.0.2
+FROM spring-gradle-native-lambda:0.9.0-SNAPSHOT
 
-ADD build/libs/*.jar build/libs/lambda.jar
+USER root
 
-RUN native-image --no-server --no-fallback -classpath build/libs/lambda.jar
+RUN apt update
+RUN apt install zip --yes
 
 ADD bootstrap bootstrap
+
 RUN chmod +x bootstrap
-RUN chmod +x lambda
+RUN chmod +x /workspace/io.aws.lambda.spring.AwsLambdaRuntime
 
-RUN zip -j function.zip bootstrap lambda
-
-EXPOSE 8080
-ENTRYPOINT ["/home/application/lambda"]
+RUN zip -j function.zip bootstrap /workspace/io.aws.lambda.spring.AwsLambdaRuntime
