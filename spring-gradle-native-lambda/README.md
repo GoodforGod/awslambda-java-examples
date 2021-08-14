@@ -1,4 +1,4 @@
-# spring Template
+# Spring Lambda
 
 Template for spring 2 service for Java 11+.
 

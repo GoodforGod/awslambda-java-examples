@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
+/**
+ * @author Anton Kurako (GoodforGod)
+ * @since 13.8.2021
+ */
 @Service
 public class HelloWorldLambda implements Function<Request, Response> {
 

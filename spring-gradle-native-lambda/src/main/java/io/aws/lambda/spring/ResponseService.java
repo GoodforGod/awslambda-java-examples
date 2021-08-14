@@ -6,8 +6,9 @@ import java.util.UUID;
 
 /**
  * @author Anton Kurako (GoodforGod)
- * @since 13.08.2021
+ * @since 13.8.2021
  */
+
 @Service
 public class ResponseService {
 

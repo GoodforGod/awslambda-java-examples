@@ -7,6 +7,10 @@ import org.springframework.cloud.function.context.FunctionalSpringApplication;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.support.GenericApplicationContext;
 
+/**
+ * @author Anton Kurako (GoodforGod)
+ * @since 13.8.2021
+ */
 @SpringBootApplication
 public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericApplicationContext> {
 
@@ -19,6 +23,7 @@ public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericAp
         final HelloWorldLambda handler = new HelloWorldLambda(new ResponseService());
         context.registerBean(HelloWorldLambda.HANDLER_NAME,
                 FunctionRegistration.class,
-                () -> new FunctionRegistration<>(handler, HelloWorldLambda.HANDLER_NAME).type(FunctionType.from(Request.class).to(Response.class)));
+                () -> new FunctionRegistration<>(handler, HelloWorldLambda.HANDLER_NAME)
+                        .type(FunctionType.from(Request.class).to(Response.class)));
     }
 }

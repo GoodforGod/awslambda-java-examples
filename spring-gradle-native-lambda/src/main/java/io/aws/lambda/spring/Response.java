@@ -5,7 +5,7 @@ import org.springframework.nativex.hint.TypeHint;
 
 /**
  * @author Anton Kurako (GoodforGod)
- * @since 21.3.2021
+ * @since 13.8.2021
  */
 @TypeHint(types = { Response.class })
 @Data
