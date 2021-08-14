@@ -1,10 +1,10 @@
-package io.aws.lambda;
+package io.aws.lambda.simple;
 
 import com.amazonaws.services.lambda.runtime.Context;
-import io.aws.lambda.runtime.LambdaContext;
-import io.aws.lambda.runtime.convert.Converter;
-import io.aws.lambda.runtime.handler.EventHandler;
-import io.aws.lambda.runtime.handler.impl.RawEventHandler;
+import io.aws.lambda.simple.runtime.LambdaContext;
+import io.aws.lambda.simple.runtime.convert.Converter;
+import io.aws.lambda.simple.runtime.handler.EventHandler;
+import io.aws.lambda.simple.runtime.handler.impl.RawEventHandler;
 import io.micronaut.context.ApplicationContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

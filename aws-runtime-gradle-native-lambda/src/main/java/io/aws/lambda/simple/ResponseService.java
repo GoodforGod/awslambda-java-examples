@@ -1,4 +1,6 @@
-package io.aws.lambda;
+package io.aws.lambda.simple;
+
+import io.micronaut.core.annotation.Introspected;
 
 import javax.inject.Singleton;
 import java.util.UUID;
@@ -7,6 +9,7 @@ import java.util.UUID;
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
+@Introspected
 @Singleton
 public class ResponseService {
 

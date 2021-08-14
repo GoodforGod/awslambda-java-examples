@@ -1,4 +1,4 @@
-package io.aws.lambda;
+package io.aws.lambda.simple;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+/**
+ * @author Anton Kurako (GoodforGod)
+ * @since 31.07.2021
+ */
 @Introspected
 @Singleton
 public class HelloWorldLambda implements RequestHandler<Request, Response> {
