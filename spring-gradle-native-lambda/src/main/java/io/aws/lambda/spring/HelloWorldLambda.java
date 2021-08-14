@@ -6,18 +6,18 @@ import org.springframework.stereotype.Service;
 import java.util.function.Function;
 
 @Service
-public class HelloWorldLambda implements SpringLambdaHandler, Function<Request, Response> {
+public class HelloWorldLambda implements Function<Request, Response> {
+
+    /**
+     * Write that in AWS Lambda Handler name (Runtime Settings)
+     */
+    public static final String HANDLER_NAME = "hello-world";
 
     private final ResponseService responseService;
 
     @Autowired
     public HelloWorldLambda(ResponseService responseService) {
         this.responseService = responseService;
-    }
-
-    @Override
-    public String name() {
-        return "hello-world";
     }
 
     @Override

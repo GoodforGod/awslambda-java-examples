@@ -1,6 +1,5 @@
 package io.aws.lambda.spring;
 
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.function.context.FunctionRegistration;
 import org.springframework.cloud.function.context.FunctionType;
@@ -17,9 +16,9 @@ public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericAp
 
     @Override
     public void initialize(GenericApplicationContext context) {
-        final SpringLambdaHandler handler = new HelloWorldLambda(new ResponseService());
-        context.registerBean(handler.name(),
+        final HelloWorldLambda handler = new HelloWorldLambda(new ResponseService());
+        context.registerBean(HelloWorldLambda.HANDLER_NAME,
                 FunctionRegistration.class,
-                () -> new FunctionRegistration<>(handler, handler.name()).type(FunctionType.from(Request.class).to(Response.class)));
+                () -> new FunctionRegistration<>(handler, HelloWorldLambda.HANDLER_NAME).type(FunctionType.from(Request.class).to(Response.class)));
     }
 }
