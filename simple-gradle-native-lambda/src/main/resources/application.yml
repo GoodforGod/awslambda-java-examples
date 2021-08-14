@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: aws-runtime-gradle-native-lambda
+    name: simple-gradle-native-lambda
     default-charset: UTF-8
 
 gson:

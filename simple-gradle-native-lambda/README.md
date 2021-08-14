@@ -4,7 +4,7 @@ Java 11+ AWS Lambda Template with Micronaut DI support with GraalVM native compa
 
 ## Runtime
 
-Template uses [AWS Lambda Runtime](https://github.com/GoodforGod/aws-lambda-runtime-micronaut) with GraalVM native compatibility.
+Template uses [Simple Lambda](https://github.com/GoodforGod/simple-lambda) with GraalVM native compatibility.
 
 ## Deploy
 
