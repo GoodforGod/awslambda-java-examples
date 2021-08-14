@@ -14,3 +14,6 @@ Template for Quarkus.
 ```shell
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
 ```
+
+## More
+- https://quarkus.io/guides/amazon-lambda
