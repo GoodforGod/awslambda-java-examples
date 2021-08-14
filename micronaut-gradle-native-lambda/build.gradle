@@ -28,7 +28,7 @@ spotless {
 }
 
 micronaut {
-    version "2.5.9"
+    version "2.5.12"
     processing {
         incremental true
         module project.name
@@ -79,7 +79,6 @@ test {
 
     environment([
             "SECURITY_ENABLED"     : "false",
-            "USE_INTEGRATION_TESTS": "$useIntegrationTests",
     ])
 }
 
