@@ -16,3 +16,7 @@ Template for Micronaut 2 service for Java 11+.
 docker build -t micronaut-gradle-native-lambda .
 docker run --rm --entrypoint cat micronaut-gradle-native-lambda /home/application/function.zip > build/function.zip
 ```
+
+## More
+- https://micronaut-projects.github.io/micronaut-aws/latest/guide/#lambda
+- https://guides.micronaut.io/latest/mn-serverless-function-aws-lambda-gradle-java.html
