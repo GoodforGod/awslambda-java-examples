@@ -4,22 +4,24 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime;
 
-import java.net.MalformedURLException;
-
-public class AwsLambdaRuntime
-        extends AbstractMicronautLambdaRuntime<Request, Response, Request, Response> {
+/**
+ * @author Anton Kurako (GoodforGod)
+ * @since 31.07.2021
+ */
+public class AwsLambdaRuntime extends AbstractMicronautLambdaRuntime<Request, Response, Request, Response> {
 
     public static void main(String[] args) {
         try {
             new AwsLambdaRuntime().run(args);
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
     }
 
     @Override
     @Nullable
     protected RequestHandler<Request, Response> createRequestHandler(String... args) {
-        return getApplicationContext().getBean(HelloWorldLambda.class);
+        return new HelloWorldLambda(new ResponseService());
     }
 }

@@ -1,4 +1,4 @@
-# Micronaut Template
+# Micronaut Lambda
 
 Template for Micronaut 2 service for Java 11+.
 
@@ -8,3 +8,11 @@ Template for Micronaut 2 service for Java 11+.
 - .gitignore and .gitattributes for proper ignore and symbols check.
 - .editorconfig for simple configs code style and encoding UTF-8.
 - Proper Gradle and Gradle Wrapper configuration.
+
+## Build
+
+```shell
+./gradlew shadorJar
+docker build -t micronaut-gradle-native-lambda .
+docker run --rm --entrypoint cat micronaut-gradle-native-lambda /home/application/function.zip > build/function.zip
+```
