@@ -16,3 +16,13 @@ Template for spring 2 service for Java 11+.
 docker build -t spring-gradle-native-lambda-function .
 docker run --rm --entrypoint cat spring-gradle-native-lambda-function /function.zip > build/function.zip
 ```
+
+## More
+- https://spring.io/blog/2021/03/11/announcing-spring-native-beta
+- https://spring.io/blog/2021/06/14/spring-native-0-10-0-available-now
+- https://www.baeldung.com/spring-native-intro
+- https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/
+- https://spring.io/guides/gs/spring-boot-docker/
+- https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
+- https://paketo.io/docs/howto/java/
+- https://github.com/spring-projects-experimental/spring-native/tree/main/samples/cloud-function-aws
