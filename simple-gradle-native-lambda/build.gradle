@@ -29,7 +29,7 @@ spotless {
 }
 
 micronaut {
-    version "2.5.12"
+    version("2.5.12")
     processing {
         incremental(true)
         module(project.name)
@@ -71,7 +71,7 @@ test {
     }
 }
 
-mainClassName = "io.aws.lambda.simple.runtime.AwsLambdaRuntime"
+mainClassName = "io.aws.lambda.simple.runtime.InputLambdaEntrypoint"
 jar.enabled = true
 shadowJar {
     mergeServiceFiles()
