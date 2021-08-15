@@ -2,14 +2,16 @@ package io.aws.lambda.simple;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import io.aws.lambda.simple.runtime.LambdaContext;
-import io.aws.lambda.simple.runtime.convert.Converter;
 import io.aws.lambda.simple.runtime.handler.EventHandler;
-import io.aws.lambda.simple.runtime.handler.impl.RawEventHandler;
+import io.aws.lambda.simple.runtime.handler.impl.BodyEventHandler;
+import io.aws.lambda.simple.runtime.handler.impl.InputEventHandler;
+import io.aws.lambda.simple.runtime.utils.InputStreamUtils;
 import io.micronaut.context.ApplicationContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.UUID;
+import java.io.InputStream;
+import java.util.Collections;
 
 /**
  * @author GoodforGod
@@ -18,16 +20,30 @@ import java.util.UUID;
 class HelloWorldLambdaTests extends Assertions {
 
     @Test
-    void handleSuccess() {
+    void gatewayEventHandled() {
         try (final ApplicationContext context = ApplicationContext.run()) {
-            final Converter converter = context.getBean(Converter.class);
-            final HelloWorldLambda lambda = context.getBean(HelloWorldLambda.class);
-            final EventHandler handler = new RawEventHandler(lambda, converter);
-            final String payload = "{\"context\":{\"requestId\":\"ecbc9432-a41c-4b71-bf7b-832b391e9e1b\"},\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false}";
+            final EventHandler handler = context.getBean(BodyEventHandler.class);
 
-            final Context requestContext = LambdaContext.ofRequestId(UUID.randomUUID().toString());
-            final String response = handler.handle(payload, requestContext);
-            assertEquals("{\"queryParams\":{\"from\":\"one\",\"to\":\"ten\"}}", response);
+            final Context requestContext = LambdaContext.ofHeaders(Collections.emptyMap());
+            final String payload = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"name\\\":\\\"bob\\\"}\"}";
+            final InputStream inputStream = InputStreamUtils.getStringUTF8AsInputStream(payload);
+
+            final String response = handler.handle(inputStream, requestContext);
+            assertTrue(response.contains("Hello - bob"));
+        }
+    }
+
+    @Test
+    void rawEventHandled() {
+        try (final ApplicationContext context = ApplicationContext.run()) {
+            final EventHandler handler = context.getBean(InputEventHandler.class);
+
+            final Context requestContext = LambdaContext.ofHeaders(Collections.emptyMap());
+            final String payload = "{\"name\":\"bob\"}";
+            final InputStream inputStream = InputStreamUtils.getStringUTF8AsInputStream(payload);
+
+            final String response = handler.handle(inputStream, requestContext);
+            assertTrue(response.contains("Hello - bob"));
         }
     }
 }
