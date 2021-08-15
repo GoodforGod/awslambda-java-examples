@@ -15,5 +15,11 @@ Template for Quarkus.
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
 ```
 
+## SAM
+
+```shell
+sam local start-api -t sam.yaml -p 3000
+```
+
 ## More
 - https://quarkus.io/guides/amazon-lambda

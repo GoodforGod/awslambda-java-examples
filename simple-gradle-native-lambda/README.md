@@ -22,3 +22,9 @@ Check bootstrap file that it have **LF line** (Unix one) separator.
 docker build -t simple-gradle-native-lambda .
 docker run --rm --entrypoint cat simple-gradle-native-lambda /home/application/function.zip > build/function.zip
 ```
+
+## SAM
+
+```shell
+sam local start-api -t sam.yaml -p 3000
+```
