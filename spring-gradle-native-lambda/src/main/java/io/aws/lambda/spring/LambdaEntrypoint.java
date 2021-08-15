@@ -12,10 +12,10 @@ import org.springframework.context.support.GenericApplicationContext;
  * @since 13.8.2021
  */
 @SpringBootApplication
-public class AwsLambdaRuntime implements ApplicationContextInitializer<GenericApplicationContext> {
+public class LambdaEntrypoint implements ApplicationContextInitializer<GenericApplicationContext> {
 
     public static void main(String[] args) {
-        FunctionalSpringApplication.run(AwsLambdaRuntime.class, args);
+        FunctionalSpringApplication.run(LambdaEntrypoint.class, args);
     }
 
     @Override

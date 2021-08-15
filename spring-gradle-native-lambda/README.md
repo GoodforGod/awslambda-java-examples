@@ -11,10 +11,18 @@ Template for spring 2 service for Java 11+.
 
 ## Build
 
+All Services, Components, Beans must be annotation @Component, @Service, etc. even if they are constructed manually without DI. (who knows why, that's Spring magic)
+
 ```shell
 ./gradlew bootBuildImage
 docker build -t spring-gradle-native-lambda-function .
 docker run --rm --entrypoint cat spring-gradle-native-lambda-function /function.zip > build/function.zip
+```
+
+## SAM
+
+```shell
+sam local start-api -t sam.yaml -p 3000
 ```
 
 ## More

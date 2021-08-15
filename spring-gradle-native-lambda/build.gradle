@@ -57,7 +57,7 @@ dependencies {
 }
 
 bootJar {
-    mainClass = "io.aws.lambda.spring.AwsLambdaRuntime"
+    mainClass = "io.aws.lambda.spring.LambdaEntrypoint"
 }
 
 bootBuildImage {
