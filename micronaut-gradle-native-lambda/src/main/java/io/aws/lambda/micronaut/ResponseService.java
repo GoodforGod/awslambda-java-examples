@@ -3,14 +3,12 @@ package io.aws.lambda.micronaut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Singleton;
 import java.util.UUID;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
-@Singleton
 public class ResponseService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

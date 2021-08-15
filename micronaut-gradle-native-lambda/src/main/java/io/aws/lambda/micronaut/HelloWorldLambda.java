@@ -2,8 +2,6 @@ package io.aws.lambda.micronaut;
 
 import io.micronaut.function.aws.MicronautRequestHandler;
 
-import javax.inject.Inject;
-
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
@@ -12,7 +10,6 @@ public class HelloWorldLambda extends MicronautRequestHandler<Request, Response>
 
     private final ResponseService responseService;
 
-    @Inject
     public HelloWorldLambda(ResponseService responseService) {
         this.responseService = responseService;
     }

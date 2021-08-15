@@ -28,7 +28,7 @@ spotless {
 }
 
 micronaut {
-    version "2.5.12"
+    version("2.5.12")
     processing {
         incremental(true)
         module(project.name)
@@ -49,7 +49,6 @@ dependencies {
     implementation "org.slf4j:slf4j-simple:1.7.30"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
-//    implementation 'io.micronaut.aws:micronaut-function-aws-api-proxy'
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 
@@ -75,7 +74,7 @@ test {
     }
 }
 
-mainClassName = "io.aws.lambda.micronaut.AwsLambdaRuntime"
+mainClassName = "io.aws.lambda.micronaut.LambdaEntrypoint"
 jar.enabled = true
 shadowJar {
     mergeServiceFiles()
