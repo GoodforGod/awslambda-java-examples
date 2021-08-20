@@ -47,6 +47,7 @@ dependencies {
     annotationProcessor "io.micronaut:micronaut-graal"
 
     implementation "org.slf4j:slf4j-simple:1.7.30"
+    implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
 

@@ -1,6 +1,7 @@
 package io.aws.lambda.micronaut;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import io.aws.lambda.micronaut.http.EtherscanService;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime;
 
@@ -22,6 +23,6 @@ public class LambdaEntrypoint extends AbstractMicronautLambdaRuntime<Request, Re
     @Override
     @Nullable
     protected RequestHandler<Request, Response> createRequestHandler(String... args) {
-        return new HelloWorldLambda(new ResponseService());
+        return new HelloWorldLambda(new ResponseService(new EtherscanService()));
     }
 }
