@@ -1,11 +1,10 @@
 FROM goodforgod/amazonlinux-graalvm:21.2.0
 
-ADD target/*dependencies.jar build/libs/lambda.jar
+ADD build/libs/*all.jar build/libs/lambda.jar
 
 RUN native-image --no-server --no-fallback -classpath build/libs/lambda.jar
 
 ADD bootstrap bootstrap
-RUN ls -a
 RUN chmod +x bootstrap
 RUN chmod +x lambda
 
