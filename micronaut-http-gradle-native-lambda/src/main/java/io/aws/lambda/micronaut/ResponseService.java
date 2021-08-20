@@ -21,7 +21,7 @@ public class ResponseService {
 
     public Response getResponse(Request request) {
         logger.info("Processing Block with number: {}", request.getBlockNumber());
-        final long started = System.currentTimeMillis();;
+        final long started = System.currentTimeMillis();
         final EtherscanBlock block = etherscanService.getBlockByNumber(request.getBlockNumber());
         logger.info("Block retrieval took '{}' millis", System.currentTimeMillis() - started);
         return new Response(block.getBlockNumber(), "Hello Miner - " + block.getBlockMiner());
