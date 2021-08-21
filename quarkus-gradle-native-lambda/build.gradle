@@ -27,18 +27,27 @@ spotless {
     }
 }
 
+configurations {
+    quarkusBom
+    compileOnly.extendsFrom(quarkusBom)
+    implementation.extendsFrom(quarkusBom)
+    annotationProcessor.extendsFrom(quarkusBom)
+    testAnnotationProcessor.extendsFrom(quarkusBom)
+}
+
 dependencies {
+    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
+
     compileOnly "org.projectlombok:lombok:1.18.20"
     annotationProcessor "org.projectlombok:lombok:1.18.20"
 
-    implementation enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
-    implementation 'io.quarkus:quarkus-resteasy'
-    implementation 'io.quarkus:quarkus-amazon-lambda'
+    implementation "io.quarkus:quarkus-resteasy"
+    implementation "io.quarkus:quarkus-amazon-lambda"
 
     testImplementation "io.quarkus:quarkus-test-amazon-lambda"
 
-    testImplementation 'io.quarkus:quarkus-junit5'
-    testImplementation 'io.rest-assured:rest-assured'
+    testImplementation "io.quarkus:quarkus-junit5"
+    testImplementation "io.rest-assured:rest-assured"
 }
 
 test {
