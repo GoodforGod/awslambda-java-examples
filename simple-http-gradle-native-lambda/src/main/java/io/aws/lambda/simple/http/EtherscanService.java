@@ -31,14 +31,14 @@ public class EtherscanService {
         final URI uri = URI.create("https://api.etherscan.io/api?module=block&action=getblockreward&blockno=" + blockNumber);
         final SimpleHttpResponse httpResponse = httpClient.get(uri);
         if (httpResponse.statusCode() != 200)
-            throw new StatusException("Error retrieving block", httpResponse.statusCode());
+            throw new StatusException(httpResponse.statusCode(), "Error retrieving block");
 
         final EtherscanBlockResponse response = converter.fromJson(httpResponse.bodyAsString(), EtherscanBlockResponse.class);
         if (response.getStatus().equals("1")) {
             return response.getResult();
         } else {
             final int statusCode = Integer.parseInt(response.getStatus());
-            throw new StatusException(response.getMessage(), statusCode);
+            throw new StatusException(statusCode, response.getMessage());
         }
     }
 }
