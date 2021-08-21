@@ -12,7 +12,7 @@ Template for Quarkus.
 ## Build
 
 ```shell
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
+./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-native-image:21.2.0-java11
 ```
 
 ## SAM
@@ -22,4 +22,5 @@ sam local start-api -t sam.yaml -p 3000
 ```
 
 ## More
+- https://quarkus.io/guides/gradle-tooling
 - https://quarkus.io/guides/amazon-lambda
