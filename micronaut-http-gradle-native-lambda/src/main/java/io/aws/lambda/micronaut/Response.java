@@ -13,6 +13,6 @@ import lombok.Data;
 @Data
 public class Response {
 
-    private final String id;
+    private final String blockReward;
     private final String message;
 }

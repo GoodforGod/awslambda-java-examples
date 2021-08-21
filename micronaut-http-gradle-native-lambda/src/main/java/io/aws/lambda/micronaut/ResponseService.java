@@ -26,6 +26,6 @@ public class ResponseService {
         final EtherscanBlock block = etherscanService.getBlockByNumber(request.getBlockNumber());
 
         logger.info("Block retrieval took '{}' millis", System.currentTimeMillis() - started);
-        return new Response(block.getBlockNumber(), "Hello Miner - " + block.getBlockMiner());
+        return new Response(block.getBlockReward(), "Hello Miner - " + block.getBlockMiner());
     }
 }
