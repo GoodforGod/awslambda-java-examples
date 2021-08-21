@@ -32,7 +32,7 @@ public class EtherscanService {
         if (response.getStatus().equals("1")) {
             return response.getResult();
         } else {
-            final Integer statusCode = Integer.valueOf(response.getStatus());
+            final int statusCode = Integer.parseInt(response.getStatus());
             throw new HttpStatusException(HttpStatus.valueOf(statusCode), response.getMessage());
         }
     }
