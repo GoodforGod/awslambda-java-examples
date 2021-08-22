@@ -5,6 +5,7 @@ import io.aws.lambda.simple.runtime.error.StatusException;
 import io.aws.lambda.simple.runtime.http.SimpleHttpClient;
 import io.aws.lambda.simple.runtime.http.SimpleHttpResponse;
 import io.micronaut.core.annotation.Introspected;
+import io.net.uri.builder.URIBuilder;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -18,6 +19,7 @@ import java.net.URI;
 @Singleton
 public class EtherscanService {
 
+    private final URI baseUri;
     private final Converter converter;
     private final SimpleHttpClient httpClient;
 
@@ -25,10 +27,17 @@ public class EtherscanService {
     public EtherscanService(Converter converter, SimpleHttpClient httpClient) {
         this.converter = converter;
         this.httpClient = httpClient;
+        this.baseUri = URIBuilder.of("https://api.etherscan.io").path("/api")
+                .queryParam("module", "block")
+                .queryParam("action", "getblockreward")
+                .build();
     }
 
     public EtherscanBlock getBlockByNumber(int blockNumber) {
-        final URI uri = URI.create("https://api.etherscan.io/api?module=block&action=getblockreward&blockno=" + blockNumber);
+        final URI uri = URIBuilder.of(baseUri)
+                .queryParam("blockno", blockNumber)
+                .build();
+
         final SimpleHttpResponse httpResponse = httpClient.get(uri);
         if (httpResponse.statusCode() != 200)
             throw new StatusException(httpResponse.statusCode(), "Error retrieving block");
