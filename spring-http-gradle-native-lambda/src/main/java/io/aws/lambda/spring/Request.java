@@ -11,5 +11,5 @@ import org.springframework.nativex.hint.TypeHint;
 @Data
 public class Request {
 
-    private String name;
+    private int blockNumber;
 }

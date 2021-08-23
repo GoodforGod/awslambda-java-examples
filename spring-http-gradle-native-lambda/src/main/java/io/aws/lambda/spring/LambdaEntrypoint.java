@@ -1,5 +1,6 @@
 package io.aws.lambda.spring;
 
+import io.aws.lambda.spring.http.EtherscanService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.function.context.FunctionRegistration;
 import org.springframework.cloud.function.context.FunctionType;
@@ -20,7 +21,7 @@ public class LambdaEntrypoint implements ApplicationContextInitializer<GenericAp
 
     @Override
     public void initialize(GenericApplicationContext context) {
-        final HelloWorldLambda handler = new HelloWorldLambda(new ResponseService());
+        final HelloWorldLambda handler = new HelloWorldLambda(new ResponseService(new EtherscanService()));
         context.registerBean(HelloWorldLambda.HANDLER_NAME,
                 FunctionRegistration.class,
                 () -> new FunctionRegistration<>(handler, HelloWorldLambda.HANDLER_NAME)
