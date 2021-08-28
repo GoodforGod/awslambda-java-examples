@@ -6,9 +6,9 @@ import io.aws.lambda.simple.runtime.http.SimpleHttpClient;
 import io.aws.lambda.simple.runtime.http.SimpleHttpResponse;
 import io.micronaut.core.annotation.Introspected;
 import io.net.uri.builder.URIBuilder;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import java.net.URI;
 
 /**

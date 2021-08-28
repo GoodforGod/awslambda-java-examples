@@ -6,7 +6,7 @@ plugins {
     id "io.micronaut.application" version "2.0.3"
     id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "5.11.0"
-    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 repositories {
@@ -29,7 +29,7 @@ spotless {
 }
 
 micronaut {
-    version("2.5.12")
+    version("3.0.0")
     processing {
         incremental(true)
         module(project.name)
@@ -74,12 +74,17 @@ test {
 mainClassName = "io.aws.lambda.simple.runtime.InputLambdaEntrypoint"
 jar.enabled = true
 shadowJar {
+    dependsOn tasks.generateResourceConfigFile
     mergeServiceFiles()
     manifest {
         attributes "Main-Class": mainClassName
         attributes "Implementation-Version": artifactVersion
         attributes "Build-Version": buildNumber
     }
+}
+
+generateResourceConfigFile {
+    outputDirectory = layout.buildDirectory.dir("classes/java/main/META-INF/native-image/native-resources")
 }
 
 tasks.withType(JavaCompile) {
