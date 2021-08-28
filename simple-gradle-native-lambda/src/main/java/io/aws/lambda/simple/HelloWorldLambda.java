@@ -3,9 +3,8 @@ package io.aws.lambda.simple;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Introspected;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
 /**
  * @author Anton Kurako (GoodforGod)

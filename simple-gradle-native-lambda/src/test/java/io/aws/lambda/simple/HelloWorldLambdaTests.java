@@ -1,17 +1,19 @@
 package io.aws.lambda.simple;
 
-import com.amazonaws.services.lambda.runtime.Context;
 import io.aws.lambda.simple.runtime.LambdaContext;
 import io.aws.lambda.simple.runtime.handler.EventHandler;
 import io.aws.lambda.simple.runtime.handler.impl.BodyEventHandler;
 import io.aws.lambda.simple.runtime.handler.impl.InputEventHandler;
 import io.aws.lambda.simple.runtime.utils.InputStreamUtils;
+import io.aws.lambda.simple.runtime.utils.SubscriberUtils;
 import io.micronaut.context.ApplicationContext;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
-import java.util.Collections;
+import java.nio.ByteBuffer;
+import java.util.UUID;
+import java.util.concurrent.Flow;
 
 /**
  * @author GoodforGod
@@ -20,30 +22,38 @@ import java.util.Collections;
 class HelloWorldLambdaTests extends Assertions {
 
     @Test
-    void gatewayEventHandled() {
+    void gatewayEvent() {
         try (final ApplicationContext context = ApplicationContext.run()) {
             final EventHandler handler = context.getBean(BodyEventHandler.class);
 
-            final Context requestContext = LambdaContext.ofHeaders(Collections.emptyMap());
-            final String payload = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"name\\\":\\\"bob\\\"}\"}";
-            final InputStream inputStream = InputStreamUtils.getStringUTF8AsInputStream(payload);
+            final String eventAsString = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"name\\\":\\\"bob\\\"}\"}";
+            final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-            final String response = handler.handle(inputStream, requestContext);
-            assertTrue(response.contains("Hello - bob"));
+            final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
+                    LambdaContext.ofRequestId(UUID.randomUUID().toString()));
+            assertNotNull(publisher);
+
+            final String responseAsString = SubscriberUtils.getPublisherString(publisher);
+            assertNotNull(responseAsString);
+            assertTrue(responseAsString.contains("Hello - bob"));
         }
     }
 
     @Test
-    void rawEventHandled() {
+    void directEvent() {
         try (final ApplicationContext context = ApplicationContext.run()) {
             final EventHandler handler = context.getBean(InputEventHandler.class);
 
-            final Context requestContext = LambdaContext.ofHeaders(Collections.emptyMap());
-            final String payload = "{\"name\":\"bob\"}";
-            final InputStream inputStream = InputStreamUtils.getStringUTF8AsInputStream(payload);
+            final String eventAsString = "{\"name\":\"bob\"}";
+            final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-            final String response = handler.handle(inputStream, requestContext);
-            assertTrue(response.contains("Hello - bob"));
+            final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
+                    LambdaContext.ofRequestId(UUID.randomUUID().toString()));
+            assertNotNull(publisher);
+
+            final String responseAsString = SubscriberUtils.getPublisherString(publisher);
+            assertNotNull(responseAsString);
+            assertTrue(responseAsString.contains("Hello - bob"));
         }
     }
 }
