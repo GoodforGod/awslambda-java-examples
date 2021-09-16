@@ -1,19 +1,18 @@
 package io.aws.lambda.simple;
 
-import io.aws.lambda.simple.runtime.LambdaContext;
 import io.aws.lambda.simple.runtime.handler.EventHandler;
+import io.aws.lambda.simple.runtime.handler.LambdaContext;
 import io.aws.lambda.simple.runtime.handler.impl.BodyEventHandler;
 import io.aws.lambda.simple.runtime.handler.impl.InputEventHandler;
 import io.aws.lambda.simple.runtime.utils.InputStreamUtils;
 import io.aws.lambda.simple.runtime.utils.SubscriberUtils;
 import io.micronaut.context.ApplicationContext;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 import java.util.concurrent.Flow;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author GoodforGod

@@ -22,14 +22,23 @@ targetCompatibility = 11
 
 spotless {
     java {
-        encoding "UTF-8"
+        encoding("UTF-8")
+        importOrder()
         removeUnusedImports()
-        eclipse().configFile "${projectDir}/config/codestyle.xml"
+        eclipse().configFile("${projectDir}/config/codestyle.xml")
+    }
+}
+
+configurations {
+    all {
+        resolutionStrategy {
+            cacheChangingModulesFor(1000, "seconds") // refresh cache for snapshots
+        }
     }
 }
 
 micronaut {
-    version("3.0.0")
+    version("3.0.1")
     processing {
         incremental(true)
         module(project.name)
@@ -71,7 +80,7 @@ test {
     }
 }
 
-mainClassName = "io.aws.lambda.simple.runtime.InputLambdaEntrypoint"
+mainClassName = "io.aws.lambda.simple.LambdaEntrypoint"
 jar.enabled = true
 shadowJar {
     dependsOn tasks.generateResourceConfigFile
@@ -88,8 +97,8 @@ generateResourceConfigFile {
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-    options.incremental = true
+    options.encoding("UTF-8")
+    options.incremental(true)
     options.fork = true
 }
 
