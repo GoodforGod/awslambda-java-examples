@@ -19,8 +19,8 @@ Check bootstrap file that it have **LF line** (Unix one) separator.
 
 ```shell
 ./gradlew shadorJar
-docker build -t simple-gradle-native-lambda .
-docker run --rm --entrypoint cat simple-gradle-native-lambda /home/application/function.zip > build/function.zip
+docker build -t simple-withoutdi-gradle-native-lambda .
+docker run --rm --entrypoint cat simple-withoutdi-gradle-native-lambda /home/application/function.zip > build/function.zip
 ```
 
 ## SAM

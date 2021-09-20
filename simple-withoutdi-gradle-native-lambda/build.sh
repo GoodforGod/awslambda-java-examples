@@ -1,5 +1,5 @@
 #!/bin/bash
 
 ./gradlew shadorJar
-docker build -t simple-gradle-native-lambda .
-docker run --rm --entrypoint cat simple-gradle-native-lambda /home/application/function.zip > build/function.zip
+docker build -t simple-withoutdi-gradle-native-lambda .
+docker run --rm --entrypoint cat simple-withoutdi-gradle-native-lambda /home/application/function.zip > build/function.zip
