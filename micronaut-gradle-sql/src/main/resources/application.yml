@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: micronaut-gradle-native-lambda
+    name: micronaut-gradle-sql
     default-charset: UTF-8
 
 jackson:

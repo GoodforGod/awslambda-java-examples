@@ -13,8 +13,8 @@ Template for Micronaut 2 service for Java 11+.
 
 ```shell
 ./gradlew shadorJar
-docker build -t micronaut-gradle-native-lambda .
-docker run --rm --entrypoint cat micronaut-gradle-native-lambda /home/application/function.zip > build/function.zip
+docker build -t micronaut-gradle-sql .
+docker run --rm --entrypoint cat micronaut-gradle-sql /home/application/function.zip > build/function.zip
 ```
 
 ## SAM

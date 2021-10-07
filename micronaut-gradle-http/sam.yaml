@@ -31,4 +31,4 @@ Resources:
     Description: URL for application
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/'
     Export:
-      Name: micronaut-http-gradle-native-lambda
+      Name: micronaut-gradle-http

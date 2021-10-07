@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: micronaut-http-gradle-native-lambda
+    name: micronaut-gradle-http
     default-charset: UTF-8
 
 jackson:
