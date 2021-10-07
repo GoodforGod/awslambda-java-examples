@@ -1,4 +1,4 @@
-package io.aws.lambda.simple;
+package io.aws.lambda.quarkus;
 
 import lombok.Data;
 

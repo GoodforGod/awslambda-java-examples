@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "jacoco"
 
-    id "io.quarkus" version "2.1.3.Final"
+    id "io.quarkus" version "2.0.3.Final"
     id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "5.11.0"
 }
@@ -16,8 +16,8 @@ repositories {
 group = groupId
 version = artifactVersion
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 spotless {
     java {
@@ -38,8 +38,8 @@ configurations {
 dependencies {
     quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
 
-    compileOnly "org.projectlombok:lombok:1.18.20"
     annotationProcessor "org.projectlombok:lombok:1.18.20"
+    compileOnly "org.projectlombok:lombok:1.18.20"
 
     implementation "io.quarkus:quarkus-config-yaml"
     implementation "io.quarkus:quarkus-rest-client"
