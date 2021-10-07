@@ -1,15 +1,14 @@
-package io.aws.lambda.simple;
+package io.aws.lambda.micronaut;
 
-import jakarta.inject.Singleton;
-import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.UUID;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
-@Singleton
 public class ResponseService {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
