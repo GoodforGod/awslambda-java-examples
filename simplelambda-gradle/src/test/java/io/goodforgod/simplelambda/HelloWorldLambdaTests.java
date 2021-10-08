@@ -1,4 +1,4 @@
-package io.aws.lambda.simple;
+package io.goodforgod.simplelambda;
 
 import io.aws.lambda.simple.runtime.handler.EventHandler;
 import io.aws.lambda.simple.runtime.handler.LambdaContext;
