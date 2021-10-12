@@ -16,8 +16,10 @@ import org.jetbrains.annotations.NotNull;
 @InitializationHint(typeNames = "io.goodforgod.simplelambda")
 public class LambdaEntrypoint extends AbstractLambdaEntrypoint {
 
+    private static final LambdaEntrypoint ENTRYPOINT = new LambdaEntrypoint();
+
     public static void main(String[] args) {
-        new LambdaEntrypoint().run(args);
+        ENTRYPOINT.run(args);
     }
 
     @Override
