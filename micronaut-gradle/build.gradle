@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "jacoco"
-    id "io.micronaut.application"  version "2.0.3"
+    id "io.micronaut.application"  version "2.0.6"
 
     id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "5.11.0"
@@ -21,14 +21,15 @@ targetCompatibility = JavaVersion.VERSION_11
 
 spotless {
     java {
-        encoding "UTF-8"
+        encoding("UTF-8")
+        importOrder()
         removeUnusedImports()
-        eclipse().configFile "${projectDir}/config/codestyle.xml"
+        eclipse().configFile("${projectDir}/config/codestyle.xml")
     }
 }
 
 micronaut {
-    version("2.5.12")
+    version("3.1.0")
     processing {
         incremental(true)
         module(project.name)
@@ -46,7 +47,7 @@ dependencies {
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
 
-    implementation "org.slf4j:slf4j-simple:1.7.30"
+    implementation "org.slf4j:slf4j-simple:1.7.32"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
 
@@ -86,8 +87,8 @@ shadowJar {
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
-    options.incremental = true
+    options.encoding("UTF-8")
+    options.incremental(true)
     options.fork = true
 }
 
