@@ -1,19 +1,18 @@
-package io.aws.lambda.simple;
+package io.goodforgod.simplelambda.micronaut;
 
-import io.aws.lambda.simple.runtime.LambdaContext;
-import io.aws.lambda.simple.runtime.handler.EventHandler;
-import io.aws.lambda.simple.runtime.handler.impl.BodyEventHandler;
-import io.aws.lambda.simple.runtime.handler.impl.InputEventHandler;
-import io.aws.lambda.simple.runtime.utils.InputStreamUtils;
-import io.aws.lambda.simple.runtime.utils.SubscriberUtils;
+import io.goodforgod.aws.simplelambda.handler.EventHandler;
+import io.goodforgod.aws.simplelambda.handler.impl.BodyEventHandler;
+import io.goodforgod.aws.simplelambda.handler.impl.InputEventHandler;
+import io.goodforgod.aws.simplelambda.runtime.EventContext;
+import io.goodforgod.aws.simplelambda.utils.InputStreamUtils;
+import io.goodforgod.aws.simplelambda.utils.SubscriberUtils;
 import io.micronaut.context.ApplicationContext;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 import java.util.concurrent.Flow;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author GoodforGod
@@ -30,7 +29,7 @@ class HelloWorldLambdaTests extends Assertions {
             final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
             final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
-                    LambdaContext.ofRequestId(UUID.randomUUID().toString()));
+                    EventContext.ofRequestId(UUID.randomUUID().toString()));
             assertNotNull(publisher);
 
             final String responseAsString = SubscriberUtils.getPublisherString(publisher);
@@ -48,7 +47,7 @@ class HelloWorldLambdaTests extends Assertions {
             final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
             final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
-                    LambdaContext.ofRequestId(UUID.randomUUID().toString()));
+                    EventContext.ofRequestId(UUID.randomUUID().toString()));
             assertNotNull(publisher);
 
             final String responseAsString = SubscriberUtils.getPublisherString(publisher);
