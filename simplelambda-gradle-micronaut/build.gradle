@@ -50,12 +50,11 @@ dependencies {
     compileOnly "org.graalvm.nativeimage:svm"
 
     implementation "io.goodforgod:simple-lambda-micronaut:0.15.0-SNAPSHOT"
-    implementation "io.goodforgod:slf4j-simple-logger:0.10.0-SNAPSHOT"
+    implementation "io.goodforgod:slf4j-simple-logger:0.10.0"
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-inject-java"
 
-    testRuntimeOnly "io.goodforgod:slf4j-simple-logger:0.10.0-SNAPSHOT"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
     testImplementation "org.junit.jupiter:junit-jupiter-api"
     testImplementation "org.junit.jupiter:junit-jupiter-params"

@@ -11,4 +11,4 @@ RUN chmod +x application
 RUN zip -j function.zip bootstrap application
 
 EXPOSE 8080
-ENTRYPOINT ["/home/application/lambda"]
+ENTRYPOINT ["/home/application/application"]
