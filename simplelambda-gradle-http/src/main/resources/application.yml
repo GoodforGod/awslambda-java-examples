@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: simple-gradle-native-lambda
+    name: simplelambda-gradle-http
     default-charset: UTF-8
 
 gson:
