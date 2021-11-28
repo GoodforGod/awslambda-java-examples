@@ -1,4 +1,4 @@
-FROM goodforgod/amazonlinux-graalvm:21.2.0
+FROM goodforgod/amazonlinux-graalvm:21.3.0-java17-amd64
 
 ADD build/libs/*all.jar build/libs/lambda.jar
 
@@ -11,4 +11,4 @@ RUN chmod +x application
 RUN zip -j function.zip bootstrap application
 
 EXPOSE 8080
-ENTRYPOINT ["/home/application/application"]
+ENTRYPOINT ["/home/application/lambda"]

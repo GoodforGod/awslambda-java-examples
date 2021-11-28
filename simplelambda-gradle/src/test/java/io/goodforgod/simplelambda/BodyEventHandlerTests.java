@@ -6,7 +6,6 @@ import io.goodforgod.aws.simplelambda.handler.EventHandler;
 import io.goodforgod.aws.simplelambda.handler.impl.BodyEventHandler;
 import io.goodforgod.aws.simplelambda.runtime.EventContext;
 import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
-import io.goodforgod.aws.simplelambda.runtime.SimpleRuntimeContext;
 import io.goodforgod.aws.simplelambda.utils.InputStreamUtils;
 import io.goodforgod.aws.simplelambda.utils.SubscriberUtils;
 import java.io.InputStream;
@@ -24,7 +23,7 @@ class BodyEventHandlerTests extends Assertions {
 
     @Test
     void bodyEventHandled() {
-        try (final RuntimeContext context = new SimpleRuntimeContext(c -> new HelloWorldLambda(new ResponseService()))) {
+        try (final RuntimeContext context = new LambdaEntrypoint().getRuntimeContext()) {
             final EventHandler handler = context.getBean(BodyEventHandler.class);
             final Converter converter = context.getBean(Converter.class);
 
