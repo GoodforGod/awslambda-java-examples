@@ -1,7 +1,0 @@
-micronaut:
-  application:
-    name: simple-withoutdi-gradle-native-lambda
-    default-charset: UTF-8
-
-gson:
-  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX

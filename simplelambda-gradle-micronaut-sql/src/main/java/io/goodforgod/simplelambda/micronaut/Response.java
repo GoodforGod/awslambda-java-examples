@@ -1,4 +1,4 @@
-package io.aws.lambda.simple;
+package io.goodforgod.simplelambda.micronaut;
 
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.core.annotation.TypeHint;

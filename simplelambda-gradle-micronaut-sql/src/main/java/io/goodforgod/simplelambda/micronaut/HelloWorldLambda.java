@@ -1,11 +1,11 @@
-package io.aws.lambda.simple;
+package io.goodforgod.simplelambda.micronaut;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Introspected;
-import jakarta.inject.Inject;
-import jakarta.inject.Singleton;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 /**
  * @author Anton Kurako (GoodforGod)
