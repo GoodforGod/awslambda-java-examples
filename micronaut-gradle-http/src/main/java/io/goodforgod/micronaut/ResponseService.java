@@ -1,7 +1,7 @@
-package io.aws.lambda.micronaut;
+package io.goodforgod.micronaut;
 
-import io.aws.lambda.micronaut.http.EtherscanBlock;
-import io.aws.lambda.micronaut.http.EtherscanService;
+import io.goodforgod.micronaut.http.EtherscanBlock;
+import io.goodforgod.micronaut.http.EtherscanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,6 +26,9 @@ public class ResponseService {
         final EtherscanBlock block = etherscanService.getBlockByNumber(request.getBlockNumber());
 
         logger.info("Block retrieval took '{}' millis", System.currentTimeMillis() - started);
-        return new Response(block.getBlockReward(), "Hello Miner - " + block.getBlockMiner());
+        final Response response = new Response();
+        response.setBlockReward(block.getBlockReward());
+        response.setMessage("Hello Miner - " + block.getBlockMiner());
+        return response;
     }
 }

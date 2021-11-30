@@ -1,4 +1,4 @@
-package io.aws.lambda.micronaut.http;
+package io.goodforgod.micronaut.http;
 
 import io.micronaut.core.annotation.TypeHint;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 public class EtherscanBlockResponse {
 
-    public String status;
-    public String message;
-    public EtherscanBlock result;
+    private String status;
+    private String message;
+    private EtherscanBlock result;
 }

@@ -1,11 +1,10 @@
-package io.aws.lambda.micronaut.http;
+package io.goodforgod.micronaut.http;
 
 import io.micronaut.context.exceptions.ConfigurationException;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.RxHttpClient;
 import io.micronaut.http.exceptions.HttpStatusException;
-
 import java.net.MalformedURLException;
 import java.net.URI;
 
@@ -29,7 +28,7 @@ public class EtherscanService {
         final URI uri = URI.create("/api?module=block&action=getblockreward&blockno=" + blockNumber);
         final EtherscanBlockResponse response = etherscanHttpClient.retrieve(HttpRequest.GET(uri), EtherscanBlockResponse.class)
                 .blockingFirst();
-        if (response.getStatus().equals("1")) {
+        if ("1".equals(response.getStatus())) {
             return response.getResult();
         } else {
             final int statusCode = Integer.parseInt(response.getStatus());

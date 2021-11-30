@@ -1,7 +1,7 @@
-package io.aws.lambda.micronaut;
+package io.goodforgod.micronaut;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.aws.lambda.micronaut.http.EtherscanService;
+import io.goodforgod.micronaut.http.EtherscanService;
 import io.micronaut.core.annotation.Nullable;
 import io.micronaut.function.aws.runtime.AbstractMicronautLambdaRuntime;
 
