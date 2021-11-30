@@ -1,11 +1,10 @@
-package io.goodforgod.simplelambda.micronaut;
+package io.goodforgod.simplelambda;
 
 import io.goodforgod.aws.lambda.events.gateway.APIGatewayV2HTTPEvent;
 import io.goodforgod.aws.simplelambda.convert.Converter;
 import io.goodforgod.aws.simplelambda.handler.EventHandler;
 import io.goodforgod.aws.simplelambda.handler.impl.BodyEventHandler;
 import io.goodforgod.aws.simplelambda.handler.impl.InputEventHandler;
-import io.goodforgod.aws.simplelambda.micronaut.MicronautBodyLambdaEntrypoint;
 import io.goodforgod.aws.simplelambda.runtime.EventContext;
 import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
 import io.goodforgod.aws.simplelambda.utils.InputStreamUtils;
@@ -14,7 +13,6 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.UUID;
 import java.util.concurrent.Flow;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -26,7 +24,7 @@ import org.junit.jupiter.api.Test;
  */
 class HelloWorldLambdaTests extends Assertions {
 
-    private static final RuntimeContext CONTEXT = new MicronautBodyLambdaEntrypoint().getRuntimeContext();
+    private static final RuntimeContext CONTEXT = new LambdaEntrypoint().getRuntimeContext();
 
     @BeforeAll
     public static void setup() {
