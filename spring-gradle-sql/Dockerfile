@@ -1,4 +1,4 @@
-FROM spring-http-gradle-native-lambda:0.9.0-SNAPSHOT
+FROM spring-gradle-sql:0.9.0-SNAPSHOT
 
 USER root
 
