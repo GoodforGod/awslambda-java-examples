@@ -4,4 +4,5 @@ micronaut:
     default-charset: UTF-8
 
 gson:
-  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX
+  field-naming-policy: identity
+  long-serialization-policy: default
