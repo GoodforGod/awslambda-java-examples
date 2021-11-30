@@ -1,0 +1,3 @@
+#!/bin/sh
+set -euo pipefail
+./io.aws.lambda.spring.LambdaEntrypoint -Xmx128m -Djava.library.path=$(pwd)
