@@ -38,10 +38,10 @@ configurations {
 
 dependencies {
     annotationProcessor "io.goodforgod:graalvm-hint-processor:0.10.0-SNAPSHOT"
-    annotationProcessor "org.projectlombok:lombok:1.18.21"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
 
     compileOnly "io.goodforgod:graalvm-hint-annotations:0.10.0-SNAPSHOT"
-    compileOnly "org.projectlombok:lombok:1.18.21"
+    compileOnly "org.projectlombok:lombok:1.18.22"
 
     implementation "io.goodforgod:slf4j-simple-logger:0.10.0"
     implementation "io.goodforgod:simple-lambda:0.16.0-SNAPSHOT"
