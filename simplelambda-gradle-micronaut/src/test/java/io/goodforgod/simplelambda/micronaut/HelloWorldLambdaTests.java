@@ -24,6 +24,8 @@ class HelloWorldLambdaTests extends Assertions {
     @Test
     void gatewayEvent() throws Exception {
         try (RuntimeContext context = new MicronautBodyLambdaEntrypoint().getRuntimeContext()) {
+            context.setupInRuntime();
+
             final EventHandler handler = context.getBean(BodyEventHandler.class);
 
             final String eventAsString = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"name\\\":\\\"bob\\\"}\"}";
@@ -42,6 +44,8 @@ class HelloWorldLambdaTests extends Assertions {
     @Test
     void directEvent() throws Exception {
         try (RuntimeContext context = new MicronautBodyLambdaEntrypoint().getRuntimeContext()) {
+            context.setupInRuntime();
+
             final EventHandler handler = context.getBean(InputEventHandler.class);
 
             final String eventAsString = "{\"name\":\"bob\"}";
