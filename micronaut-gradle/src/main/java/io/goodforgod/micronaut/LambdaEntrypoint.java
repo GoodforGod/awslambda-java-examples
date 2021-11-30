@@ -1,4 +1,4 @@
-package io.aws.lambda.micronaut;
+package io.goodforgod.micronaut;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Nullable;

@@ -1,4 +1,4 @@
-package io.aws.lambda.micronaut;
+package io.goodforgod.micronaut;
 
 import java.util.UUID;
 import org.slf4j.Logger;

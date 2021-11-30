@@ -1,10 +1,10 @@
 plugins {
     id "java"
     id "jacoco"
-    id "io.micronaut.application"  version "2.0.6"
+    id "io.micronaut.application"  version "3.0.0"
 
     id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "5.11.0"
+    id "com.diffplug.spotless" version "5.14.3"
     id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
@@ -29,23 +29,23 @@ spotless {
 }
 
 micronaut {
-    version("3.1.0")
+    version("3.2.0")
     processing {
         incremental(true)
         module(project.name)
         group(project.group)
-        annotations("io.aws.lambda.micronaut.*")
+        annotations("io.goodforgod.micronaut.*")
         runtime("lambda")
     }
 }
 
 dependencies {
-    compileOnly "org.graalvm.nativeimage:svm"
-    compileOnly "org.projectlombok:lombok:1.18.20"
-
-    annotationProcessor "org.projectlombok:lombok:1.18.20"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
+
+    compileOnly "org.projectlombok:lombok:1.18.22"
+    compileOnly "org.graalvm.nativeimage:svm"
 
     implementation "org.slf4j:slf4j-simple:1.7.32"
     implementation "io.micronaut.aws:micronaut-function-aws"
@@ -75,7 +75,7 @@ test {
     }
 }
 
-mainClassName = "io.aws.lambda.micronaut.LambdaEntrypoint"
+mainClassName = "io.goodforgod.micronaut.LambdaEntrypoint"
 jar.enabled = true
 shadowJar {
     mergeServiceFiles()

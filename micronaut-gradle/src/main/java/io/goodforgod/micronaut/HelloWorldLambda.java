@@ -1,4 +1,4 @@
-package io.aws.lambda.micronaut;
+package io.goodforgod.micronaut;
 
 import io.micronaut.function.aws.MicronautRequestHandler;
 
