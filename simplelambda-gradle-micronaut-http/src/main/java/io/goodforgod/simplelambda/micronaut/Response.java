@@ -1,14 +1,14 @@
-package io.aws.lambda.simple;
+package io.goodforgod.simplelambda.micronaut;
 
+import io.goodforgod.graalvm.hint.annotation.TypeHint;
 import io.micronaut.core.annotation.Introspected;
-import io.micronaut.core.annotation.TypeHint;
 import lombok.Data;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(value = { Response.class }, accessType = { TypeHint.AccessType.ALL_PUBLIC })
+@TypeHint(value = { TypeHint.AccessType.ALL_DECLARED })
 @Introspected
 @Data
 public class Response {

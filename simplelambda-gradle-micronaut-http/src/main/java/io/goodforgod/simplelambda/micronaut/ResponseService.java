@@ -1,13 +1,12 @@
-package io.aws.lambda.simple;
+package io.goodforgod.simplelambda.micronaut;
 
-import io.aws.lambda.simple.http.EtherscanBlock;
-import io.aws.lambda.simple.http.EtherscanService;
+import io.goodforgod.simplelambda.micronaut.http.EtherscanBlock;
+import io.goodforgod.simplelambda.micronaut.http.EtherscanService;
 import io.micronaut.core.annotation.Introspected;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 /**
  * @author Anton Kurako (GoodforGod)

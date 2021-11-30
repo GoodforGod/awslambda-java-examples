@@ -1,11 +1,11 @@
-package io.aws.lambda.simple.http;
+package io.goodforgod.simplelambda.micronaut.http;
 
-import io.aws.lambda.simple.runtime.convert.Converter;
-import io.aws.lambda.simple.runtime.error.StatusException;
-import io.aws.lambda.simple.runtime.http.SimpleHttpClient;
-import io.aws.lambda.simple.runtime.http.SimpleHttpResponse;
+import io.goodforgod.aws.simplelambda.convert.Converter;
+import io.goodforgod.aws.simplelambda.error.StatusException;
+import io.goodforgod.aws.simplelambda.http.SimpleHttpClient;
+import io.goodforgod.aws.simplelambda.http.SimpleHttpResponse;
+import io.goodforgod.net.uri.URIBuilder;
 import io.micronaut.core.annotation.Introspected;
-import io.net.uri.builder.URIBuilder;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
@@ -39,11 +39,13 @@ public class EtherscanService {
                 .build();
 
         final SimpleHttpResponse httpResponse = httpClient.get(uri);
-        if (httpResponse.statusCode() != 200)
+        if (httpResponse.statusCode() != 200) {
             throw new StatusException(httpResponse.statusCode(), "Error retrieving block");
+        }
 
-        final EtherscanBlockResponse response = converter.fromJson(httpResponse.bodyAsString(), EtherscanBlockResponse.class);
-        if (response.getStatus().equals("1")) {
+        final String bodyAsString = httpResponse.bodyAsString();
+        final EtherscanBlockResponse response = converter.fromString(bodyAsString, EtherscanBlockResponse.class);
+        if ("1".equals(response.getStatus())) {
             return response.getResult();
         } else {
             final int statusCode = Integer.parseInt(response.getStatus());
