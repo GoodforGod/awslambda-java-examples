@@ -5,9 +5,7 @@ ADD build/libs/*all.jar build/libs/application.jar
 RUN native-image --no-fallback -classpath build/libs/application.jar
 
 ADD bootstrap bootstrap
-RUN chmod +x bootstrap
-RUN chmod +x application
-
+RUN chmod +x bootstrap application
 RUN zip -j function.zip bootstrap application
 
 EXPOSE 8080

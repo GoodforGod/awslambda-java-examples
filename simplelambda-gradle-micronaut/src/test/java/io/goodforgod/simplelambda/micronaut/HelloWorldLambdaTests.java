@@ -44,7 +44,8 @@ class HelloWorldLambdaTests extends Assertions {
         final String eventAsString = "{\"name\":\"Steeven King\"}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream, EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
+                EventContext.ofRequestId(UUID.randomUUID().toString()));
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
@@ -62,7 +63,8 @@ class HelloWorldLambdaTests extends Assertions {
         final String eventAsString = converter.toString(event);
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream, EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
+                EventContext.ofRequestId(UUID.randomUUID().toString()));
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
