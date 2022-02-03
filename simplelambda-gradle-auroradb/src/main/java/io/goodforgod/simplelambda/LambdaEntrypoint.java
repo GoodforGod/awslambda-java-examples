@@ -5,13 +5,9 @@ import io.goodforgod.aws.simplelambda.AbstractLambdaEntrypoint;
 import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
 import io.goodforgod.graalvm.hint.annotation.InitializationHint;
 import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
-import java.util.function.Function;
-
-import io.goodforgod.graalvm.hint.annotation.TypeHint;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.logging.impl.LogFactoryImpl;
-import org.apache.commons.logging.impl.SimpleLog;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Function;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -19,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @NativeImageHint(entrypoint = LambdaEntrypoint.class)
 @InitializationHint(typeNames = "io.goodforgod.simplelambda")
-@TypeHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
+//@TypeHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
 public class LambdaEntrypoint extends AbstractLambdaEntrypoint {
 
     private static final LambdaEntrypoint ENTRYPOINT = new LambdaEntrypoint();

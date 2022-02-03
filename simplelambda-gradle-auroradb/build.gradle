@@ -31,7 +31,7 @@ spotless {
 configurations {
     all {
         resolutionStrategy {
-            cacheChangingModulesFor 0, 'seconds' // check for updates every build
+            cacheChangingModulesFor 0, "seconds" // check for updates every build
         }
     }
     awssdkBom
@@ -50,18 +50,14 @@ dependencies {
     compileOnly "io.goodforgod:graalvm-hint-annotations:0.10.0-SNAPSHOT"
     compileOnly "org.projectlombok:lombok:1.18.22"
 
-    implementation "commons-logging:commons-logging:1.2"
-    implementation("software.amazon.awssdk:dynamodb") {
-        exclude group: "software.amazon.awssdk", module: "netty-nio-client"
-    }
-//    implementation "javax.xml.bind:jaxb-api:2.3.1"
-//    implementation "com.amazonaws:aws-java-sdk-dynamodb:1.12.148"
+    implementation "org.mariadb.jdbc:mariadb-java-client:3.0.2-rc"
+
     implementation "io.goodforgod:slf4j-simple-logger:0.10.0"
     implementation "io.goodforgod:simple-lambda:0.16.0-SNAPSHOT"
 
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.1"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:5.8.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.8.2"
 }
 
 test {
