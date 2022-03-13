@@ -1,0 +1,29 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenLocal()
+        mavenCentral()
+        maven{ url "https://repo.spring.io/release/" }
+        maven{ url "https://maven.springframework.org/release/" }
+    }
+}
+
+rootProject.name = "aws-graalvm-java-examples"
+
+include "micronaut-gradle"
+include "micronaut-gradle-http"
+include "micronaut-gradle-dynamodb"
+include "quarkus-gradle"
+include "quarkus-gradle-http"
+include "quarkus-gradle-dynamodb"
+include "simplelambda-gradle"
+include "simplelambda-gradle-http"
+include "simplelambda-gradle-dynamodb"
+include "simplelambda-gradle-auroradb"
+include "simplelambda-gradle-micronaut"
+include "simplelambda-gradle-micronaut-http"
+include "simplelambda-gradle-micronaut-dynamodb"
+include "spring-gradle"
+include "spring-gradle-http"
+include "spring-gradle-dynamodb"
+

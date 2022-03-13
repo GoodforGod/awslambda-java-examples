@@ -1,7 +1,0 @@
-micronaut:
-  application:
-    name: micronaut-gradle-sql
-    default-charset: UTF-8
-
-jackson:
-  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX

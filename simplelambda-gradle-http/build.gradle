@@ -4,8 +4,8 @@ plugins {
     id "application"
 
     id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "5.14.3"
-    id "com.github.johnrengelman.shadow" version "7.0.0"
+    id "com.diffplug.spotless" version "6.1.0"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 repositories {
@@ -16,15 +16,15 @@ repositories {
 group = groupId
 version = artifactVersion
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 spotless {
     java {
         encoding("UTF-8")
         importOrder()
         removeUnusedImports()
-        eclipse().configFile("${projectDir}/config/codestyle.xml")
+        eclipse().configFile("${rootDir}/config/codestyle.xml")
     }
 }
 
@@ -37,18 +37,18 @@ configurations {
 }
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.10.0-SNAPSHOT"
-    annotationProcessor "org.projectlombok:lombok:1.18.20"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.14.0-SNAPSHOT"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
 
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.10.0-SNAPSHOT"
-    compileOnly "org.projectlombok:lombok:1.18.20"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:0.14.0-SNAPSHOT"
+    compileOnly "org.projectlombok:lombok:1.18.22"
 
-    implementation "io.goodforgod:slf4j-simple-logger:0.10.0"
+    implementation "io.goodforgod:slf4j-simple-logger:0.11.0-SNAPSHOT"
     implementation "io.goodforgod:simple-lambda:0.15.0-SNAPSHOT"
 
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.1"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:5.8.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.8.2"
 }
 
 test {
@@ -71,7 +71,6 @@ shadowJar {
     manifest {
         attributes "Main-Class": mainClassName
         attributes "Implementation-Version": artifactVersion
-        attributes "Build-Version": buildNumber
     }
 }
 
@@ -92,6 +91,6 @@ check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
         xml.enabled(true)
-        html.destination(file("${buildDir}/jacocoHtml"))
+        html.destination file("${buildDir}/jacocoHtml")
     }
 }

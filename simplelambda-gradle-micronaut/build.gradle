@@ -5,7 +5,7 @@ plugins {
 
     id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "6.1.0"
-    id "com.github.johnrengelman.shadow" version "7.1.0"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
     id "io.micronaut.aot" version "3.1.1"
     id "io.micronaut.application" version "3.1.1"
 }
@@ -22,7 +22,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 micronaut {
-    version("3.2.4")
+    version("3.3.4")
     processing {
         incremental(true)
         module(project.name)
@@ -36,18 +36,18 @@ micronaut {
 }
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.10.0-SNAPSHOT"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.14.0-SNAPSHOT"
     annotationProcessor "org.projectlombok:lombok:1.18.22"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
 
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.10.0-SNAPSHOT"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:0.14.0-SNAPSHOT"
     compileOnly "org.projectlombok:lombok:1.18.22"
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 
     implementation "io.goodforgod:simple-lambda-micronaut:0.16.0-SNAPSHOT"
-    implementation "io.goodforgod:slf4j-simple-logger:0.10.0"
+    implementation "io.goodforgod:slf4j-simple-logger:0.11.0-SNAPSHOT"
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-inject-java"
@@ -75,7 +75,7 @@ spotless {
         encoding("UTF-8")
         importOrder()
         removeUnusedImports()
-        eclipse("4.21.0").configFile("${projectDir}/config/codestyle.xml")
+        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
     }
 }
 
@@ -86,7 +86,6 @@ shadowJar {
     manifest {
         attributes "Main-Class": mainClassName
         attributes "Implementation-Version": artifactVersion
-        attributes "Build-Version": buildNumber
     }
 }
 
@@ -107,6 +106,6 @@ check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
         xml.enabled(true)
-        html.destination(file("${buildDir}/jacocoHtml"))
+        html.destination file("${buildDir}/jacocoHtml")
     }
 }

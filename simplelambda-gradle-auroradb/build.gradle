@@ -4,8 +4,8 @@ plugins {
     id "application"
 
     id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "6.2.2"
-    id "com.github.johnrengelman.shadow" version "7.1.0"
+    id "com.diffplug.spotless" version "6.1.0"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
 repositories {
@@ -24,7 +24,7 @@ spotless {
         encoding("UTF-8")
         importOrder()
         removeUnusedImports()
-        eclipse().configFile("${projectDir}/config/codestyle.xml")
+        eclipse().configFile("${rootDir}/config/codestyle.xml")
     }
 }
 
@@ -52,7 +52,7 @@ dependencies {
 
     implementation "org.mariadb.jdbc:mariadb-java-client:2.7.5"
 
-    implementation "io.goodforgod:slf4j-simple-logger:0.10.0"
+    implementation "io.goodforgod:slf4j-simple-logger:0.11.0-SNAPSHOT"
     implementation "io.goodforgod:simple-lambda:0.16.0-SNAPSHOT"
 
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
@@ -80,7 +80,6 @@ shadowJar {
     manifest {
         attributes "Main-Class": mainClassName
         attributes "Implementation-Version": artifactVersion
-        attributes "Build-Version": buildNumber
         attributes "Build-Time": java.time.OffsetDateTime.now()
     }
 }
@@ -102,6 +101,6 @@ check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
         xml.enabled(true)
-        html.destination(file("${buildDir}/jacocoHtml"))
+        html.destination file("${buildDir}/jacocoHtml")
     }
 }

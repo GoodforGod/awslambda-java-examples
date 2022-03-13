@@ -2,9 +2,9 @@ plugins {
     id "java"
     id "jacoco"
 
-    id "io.quarkus" version "2.0.3.Final"
+    id "io.quarkus" version "2.7.3.Final"
     id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "5.11.0"
+    id "com.diffplug.spotless" version "6.1.0"
 }
 
 repositories {
@@ -16,14 +16,14 @@ repositories {
 group = groupId
 version = artifactVersion
 
-sourceCompatibility = JavaVersion.VERSION_11
-targetCompatibility = JavaVersion.VERSION_11
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 
 spotless {
     java {
         encoding "UTF-8"
         removeUnusedImports()
-        eclipse().configFile "${projectDir}/config/codestyle.xml"
+        eclipse().configFile "${rootDir}/config/codestyle.xml"
     }
 }
 
@@ -36,10 +36,10 @@ configurations {
 }
 
 dependencies {
-    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:2.0.3.Final")
+    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:2.7.3.Final")
 
-    annotationProcessor "org.projectlombok:lombok:1.18.20"
-    compileOnly "org.projectlombok:lombok:1.18.20"
+    annotationProcessor "org.projectlombok:lombok:1.18.22"
+    compileOnly "org.projectlombok:lombok:1.18.22"
 
     implementation "io.quarkus:quarkus-config-yaml"
     implementation "io.quarkus:quarkus-rest-client"
@@ -90,6 +90,6 @@ check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
         xml.enabled(true)
-        html.destination(file("${buildDir}/jacocoHtml"))
+        html.destination file("${buildDir}/jacocoHtml")
     }
 }
