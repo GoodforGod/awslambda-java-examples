@@ -18,9 +18,6 @@ repositories {
     maven { url "https://maven.springframework.org/release/" }
 }
 
-group = groupId
-version = artifactVersion
-
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 

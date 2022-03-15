@@ -2,5 +2,14 @@ group = groupId
 version = artifactVersion
 
 subprojects {
+    group = groupId
+    version = artifactVersion
 
+    configurations {
+        all {
+            resolutionStrategy {
+                cacheChangingModulesFor 0, 'seconds' // check for updates every build
+            }
+        }
+    }
 }

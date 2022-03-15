@@ -13,9 +13,6 @@ repositories {
     mavenCentral()
 }
 
-group = groupId
-version = artifactVersion
-
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
@@ -25,14 +22,6 @@ spotless {
         importOrder()
         removeUnusedImports()
         eclipse().configFile("${rootDir}/config/codestyle.xml")
-    }
-}
-
-configurations {
-    all {
-        resolutionStrategy {
-            cacheChangingModulesFor 0, 'seconds' // check for updates every build
-        }
     }
 }
 
