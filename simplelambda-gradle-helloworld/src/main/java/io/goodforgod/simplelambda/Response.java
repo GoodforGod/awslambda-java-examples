@@ -1,16 +1,10 @@
 package io.goodforgod.simplelambda;
 
 import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
-import lombok.Data;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
 @ReflectionHint
-@Data
-public class Response {
-
-    private final String id;
-    private final String message;
-}
+public record Response(String id, String message) {}

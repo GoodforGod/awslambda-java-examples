@@ -1,17 +1,18 @@
 package io.goodforgod.simplelambda;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.goodforgod.aws.lambda.events.gateway.APIGatewayV2HTTPEvent;
+import io.goodforgod.aws.simplelambda.EventContextBuilder;
 import io.goodforgod.aws.simplelambda.convert.Converter;
 import io.goodforgod.aws.simplelambda.handler.EventHandler;
 import io.goodforgod.aws.simplelambda.handler.impl.BodyEventHandler;
 import io.goodforgod.aws.simplelambda.handler.impl.InputEventHandler;
-import io.goodforgod.aws.simplelambda.runtime.EventContext;
+import io.goodforgod.aws.simplelambda.reactive.SubscriberUtils;
 import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
 import io.goodforgod.aws.simplelambda.utils.InputStreamUtils;
-import io.goodforgod.aws.simplelambda.utils.SubscriberUtils;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.UUID;
 import java.util.concurrent.Flow;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -38,12 +39,14 @@ class HelloWorldLambdaTests extends Assertions {
 
     @Test
     void inputEventHandled() {
-        final EventHandler handler = CONTEXT.getBean(InputEventHandler.class);
+        final EventHandler eventHandler = CONTEXT.getBean(InputEventHandler.class);
+        final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
 
         final String eventAsString = "{\"name\":\"Steeven King\"}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream, EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Context context = EventContextBuilder.builder().build();
+        final Flow.Publisher<ByteBuffer> publisher = eventHandler.handle(requestHandler, inputStream, context);
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
@@ -53,7 +56,8 @@ class HelloWorldLambdaTests extends Assertions {
 
     @Test
     void bodyEventHandled() {
-        final EventHandler handler = CONTEXT.getBean(BodyEventHandler.class);
+        final EventHandler eventHandler = CONTEXT.getBean(BodyEventHandler.class);
+        final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
         final Converter converter = CONTEXT.getBean(Converter.class);
 
         final String eventBody = "{\"name\":\"Steeven King\"}";
@@ -61,7 +65,8 @@ class HelloWorldLambdaTests extends Assertions {
         final String eventAsString = converter.toString(event);
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream, EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Context context = EventContextBuilder.builder().build();
+        final Flow.Publisher<ByteBuffer> publisher = eventHandler.handle(requestHandler, inputStream, context);
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
