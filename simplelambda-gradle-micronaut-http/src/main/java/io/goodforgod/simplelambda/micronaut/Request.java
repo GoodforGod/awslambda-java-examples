@@ -1,17 +1,10 @@
 package io.goodforgod.simplelambda.micronaut;
 
-import io.goodforgod.graalvm.hint.annotation.TypeHint;
-import io.micronaut.core.annotation.Introspected;
-import lombok.Data;
+import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(value = { TypeHint.AccessType.ALL_DECLARED })
-@Introspected
-@Data
-public class Request {
-
-    private int blockNumber;
-}
+@ReflectionHint
+public record Request(int blockNumber) {}

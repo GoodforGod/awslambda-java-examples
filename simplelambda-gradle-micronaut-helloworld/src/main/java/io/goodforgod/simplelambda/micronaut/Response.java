@@ -1,18 +1,10 @@
 package io.goodforgod.simplelambda.micronaut;
 
-import io.goodforgod.graalvm.hint.annotation.TypeHint;
-import io.micronaut.core.annotation.Introspected;
-import lombok.Data;
+import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(value = { TypeHint.AccessType.ALL_DECLARED })
-@Introspected
-@Data
-public class Response {
-
-    private final String id;
-    private final String message;
-}
+@ReflectionHint
+public record Response(String id, String message) {}

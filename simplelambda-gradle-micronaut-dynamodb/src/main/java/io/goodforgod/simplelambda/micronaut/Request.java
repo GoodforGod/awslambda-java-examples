@@ -1,17 +1,10 @@
 package io.goodforgod.simplelambda.micronaut;
 
-import io.micronaut.core.annotation.Introspected;
-import io.micronaut.core.annotation.TypeHint;
-import lombok.Data;
+import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
 
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@TypeHint(value = { Request.class }, accessType = { TypeHint.AccessType.ALL_PUBLIC })
-@Introspected
-@Data
-public class Request {
-
-    private String name;
-}
+@ReflectionHint
+public record Request(String name) {}

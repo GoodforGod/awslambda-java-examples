@@ -1,16 +1,14 @@
 package io.goodforgod.simplelambda;
 
-import io.goodforgod.aws.simplelambda.error.LambdaException;
-import org.mariadb.jdbc.util.DefaultOptions;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import io.goodforgod.aws.lambda.simple.error.LambdaException;
 import java.sql.Connection;
-import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Properties;
 import java.util.UUID;
+import org.mariadb.jdbc.util.DefaultOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -26,7 +24,7 @@ public class ResponseService {
             """;
 
     public Response getResponse(Request request) {
-        logger.info("Processing User with name: {}", request.getName());
+        logger.info("Processing User with name: {}", request.name());
         final String id = UUID.randomUUID().toString();
 
         logger.info("Getting envs");
@@ -47,7 +45,7 @@ public class ResponseService {
             try (final PreparedStatement statement = connection.prepareStatement(SQL)) {
                 logger.info("Got statement");
                 statement.setString(1, id);
-                statement.setString(2, request.getName());
+                statement.setString(2, request.name());
                 logger.info("Executing statement");
                 statement.executeUpdate();
                 logger.info("Statement executed");
@@ -56,6 +54,6 @@ public class ResponseService {
             throw new LambdaException(e.getMessage());
         }
 
-        return new Response(id, "Hello - " + request.getName());
+        return new Response(id, "Hello - " + request.name());
     }
 }

@@ -3,7 +3,6 @@ package io.goodforgod.simplelambda;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021

@@ -5,7 +5,6 @@ import io.goodforgod.simplelambda.http.EtherscanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
@@ -21,12 +20,12 @@ public class ResponseService {
     }
 
     public Response getResponse(Request request) {
-        logger.info("Processing Block with number: {}", request.getBlockNumber());
+        logger.info("Processing Block with number: {}", request.blockNumber());
         final long started = System.currentTimeMillis();
 
-        final EtherscanBlock block = etherscanService.getBlockByNumber(request.getBlockNumber());
+        final EtherscanBlock block = etherscanService.getBlockByNumber(request.blockNumber());
 
         logger.info("Block retrieval took '{}' millis", System.currentTimeMillis() - started);
-        return new Response(block.getBlockReward(), "Hello Miner - " + block.getBlockMiner());
+        return new Response(block.blockReward(), "Hello Miner - " + block.blockReward());
     }
 }

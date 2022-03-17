@@ -1,16 +1,13 @@
 package io.goodforgod.simplelambda;
 
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.simplelambda.AbstractLambdaEntrypoint;
-import io.goodforgod.aws.simplelambda.convert.Converter;
-import io.goodforgod.aws.simplelambda.http.SimpleHttpClient;
-import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
+import io.goodforgod.aws.lambda.simple.AbstractInputLambdaEntrypoint;
+import io.goodforgod.aws.lambda.simple.convert.Converter;
+import io.goodforgod.aws.lambda.simple.http.SimpleHttpClient;
+import io.goodforgod.aws.lambda.simple.runtime.SimpleRuntimeContext;
 import io.goodforgod.graalvm.hint.annotation.InitializationHint;
 import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
 import io.goodforgod.simplelambda.http.EtherscanService;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -18,7 +15,7 @@ import java.util.function.Function;
  */
 @NativeImageHint(entrypoint = LambdaEntrypoint.class)
 @InitializationHint(typeNames = "io.goodforgod.simplelambda")
-public class LambdaEntrypoint extends AbstractLambdaEntrypoint {
+public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
 
     private static final LambdaEntrypoint ENTRYPOINT = new LambdaEntrypoint();
 
@@ -27,7 +24,13 @@ public class LambdaEntrypoint extends AbstractLambdaEntrypoint {
     }
 
     @Override
-    protected @NotNull Function<RuntimeContext, RequestHandler> getRequestHandler() {
-        return context -> new HelloWorldLambda(new ResponseService(new EtherscanService(context.getBean(Converter.class), context.getBean(SimpleHttpClient.class))));
+    protected Consumer<SimpleRuntimeContext> setupInCompileTime() {
+        return context -> {
+            final Converter converter = context.getBean(Converter.class);
+            final SimpleHttpClient httpClient = context.getBean(SimpleHttpClient.class);
+            final HelloWorldLambda lambda = new HelloWorldLambda(
+                    new ResponseService(new EtherscanService(converter, httpClient)));
+            context.registerBean(lambda);
+        };
     }
 }

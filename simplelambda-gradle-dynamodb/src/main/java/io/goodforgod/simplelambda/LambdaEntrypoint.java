@@ -1,17 +1,14 @@
 package io.goodforgod.simplelambda;
 
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.simplelambda.AbstractLambdaEntrypoint;
-import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
+import io.goodforgod.aws.lambda.simple.AbstractInputLambdaEntrypoint;
+import io.goodforgod.aws.lambda.simple.runtime.SimpleRuntimeContext;
 import io.goodforgod.graalvm.hint.annotation.InitializationHint;
 import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
-import java.util.function.Function;
-
-import io.goodforgod.graalvm.hint.annotation.TypeHint;
+import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
+import java.util.function.Consumer;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.logging.impl.LogFactoryImpl;
 import org.apache.commons.logging.impl.SimpleLog;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -19,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
  */
 @NativeImageHint(entrypoint = LambdaEntrypoint.class)
 @InitializationHint(typeNames = "io.goodforgod.simplelambda")
-@TypeHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
-public class LambdaEntrypoint extends AbstractLambdaEntrypoint {
+@ReflectionHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
+public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
 
     private static final LambdaEntrypoint ENTRYPOINT = new LambdaEntrypoint();
 
@@ -29,7 +26,10 @@ public class LambdaEntrypoint extends AbstractLambdaEntrypoint {
     }
 
     @Override
-    protected @NotNull Function<RuntimeContext, RequestHandler> getRequestHandler() {
-        return context -> new HelloWorldLambda(new ResponseService());
+    protected Consumer<SimpleRuntimeContext> setupInCompileTime() {
+        return context -> {
+            final HelloWorldLambda lambda = new HelloWorldLambda(new ResponseService());
+            context.registerBean(lambda);
+        };
     }
 }

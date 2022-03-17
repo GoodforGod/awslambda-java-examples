@@ -1,13 +1,15 @@
 package io.goodforgod.simplelambda.micronaut;
 
-import io.goodforgod.aws.simplelambda.handler.EventHandler;
-import io.goodforgod.aws.simplelambda.handler.impl.BodyEventHandler;
-import io.goodforgod.aws.simplelambda.handler.impl.InputEventHandler;
-import io.goodforgod.aws.simplelambda.micronaut.MicronautBodyLambdaEntrypoint;
-import io.goodforgod.aws.simplelambda.runtime.EventContext;
-import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
-import io.goodforgod.aws.simplelambda.utils.InputStreamUtils;
-import io.goodforgod.aws.simplelambda.utils.SubscriberUtils;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import io.goodforgod.aws.lambda.simple.EventContextBuilder;
+import io.goodforgod.aws.lambda.simple.handler.EventHandler;
+import io.goodforgod.aws.lambda.simple.handler.impl.BodyEventHandler;
+import io.goodforgod.aws.lambda.simple.handler.impl.InputEventHandler;
+import io.goodforgod.aws.lambda.simple.micronaut.MicronautBodyLambdaEntrypoint;
+import io.goodforgod.aws.lambda.simple.reactive.SubscriberUtils;
+import io.goodforgod.aws.lambda.simple.runtime.RuntimeContext;
+import io.goodforgod.aws.lambda.simple.utils.InputStreamUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -37,14 +39,15 @@ class HelloWorldLambdaTests extends Assertions {
     }
 
     @Test
-    void gatewayEvent() throws Exception {
-        final EventHandler handler = CONTEXT.getBean(BodyEventHandler.class);
+    void gatewayEvent() {
+        final EventHandler eventHandler = CONTEXT.getBean(BodyEventHandler.class);
+        final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
 
         final String eventAsString = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"blockNumber\\\":1}\"}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
-                EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Context eventContext = EventContextBuilder.builder().setAwsRequestId(UUID.randomUUID().toString()).build();
+        final Flow.Publisher<ByteBuffer> publisher = eventHandler.handle(requestHandler, inputStream, eventContext);
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
@@ -53,14 +56,15 @@ class HelloWorldLambdaTests extends Assertions {
     }
 
     @Test
-    void directEvent() throws Exception {
-        final EventHandler handler = CONTEXT.getBean(InputEventHandler.class);
+    void directEvent() {
+        final EventHandler eventHandler = CONTEXT.getBean(InputEventHandler.class);
+        final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
 
         final String eventAsString = "{\"blockNumber\":1}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
-                EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Context eventContext = EventContextBuilder.builder().setAwsRequestId(UUID.randomUUID().toString()).build();
+        final Flow.Publisher<ByteBuffer> publisher = eventHandler.handle(requestHandler, inputStream, eventContext);
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);

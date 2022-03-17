@@ -1,14 +1,14 @@
 package io.goodforgod.simplelambda;
 
 import io.goodforgod.aws.lambda.events.gateway.APIGatewayV2HTTPEvent;
-import io.goodforgod.aws.simplelambda.convert.Converter;
-import io.goodforgod.aws.simplelambda.handler.EventHandler;
-import io.goodforgod.aws.simplelambda.handler.impl.BodyEventHandler;
-import io.goodforgod.aws.simplelambda.handler.impl.InputEventHandler;
-import io.goodforgod.aws.simplelambda.runtime.EventContext;
-import io.goodforgod.aws.simplelambda.runtime.RuntimeContext;
-import io.goodforgod.aws.simplelambda.utils.InputStreamUtils;
-import io.goodforgod.aws.simplelambda.utils.SubscriberUtils;
+import io.goodforgod.aws.lambda.simple.convert.Converter;
+import io.goodforgod.aws.lambda.simple.handler.EventHandler;
+import io.goodforgod.aws.lambda.simple.handler.impl.BodyEventHandler;
+import io.goodforgod.aws.lambda.simple.handler.impl.InputEventHandler;
+import io.goodforgod.aws.lambda.simple.runtime.EventContext;
+import io.goodforgod.aws.lambda.simple.runtime.RuntimeContext;
+import io.goodforgod.aws.lambda.simple.utils.InputStreamUtils;
+import io.goodforgod.aws.lambda.simple.utils.SubscriberUtils;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.UUID;
@@ -43,7 +43,8 @@ class HelloWorldLambdaTests extends Assertions {
         final String eventAsString = "{\"name\":\"Steeven King\"}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream, EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
+                EventContext.ofRequestId(UUID.randomUUID().toString()));
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
@@ -61,7 +62,8 @@ class HelloWorldLambdaTests extends Assertions {
         final String eventAsString = converter.toString(event);
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
-        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream, EventContext.ofRequestId(UUID.randomUUID().toString()));
+        final Flow.Publisher<ByteBuffer> publisher = handler.handle(inputStream,
+                EventContext.ofRequestId(UUID.randomUUID().toString()));
         assertNotNull(publisher);
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);

@@ -13,6 +13,8 @@ repositories {
     mavenCentral()
 }
 
+mainClassName = "io.goodforgod.simplelambda.LambdaEntrypoint"
+
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
@@ -26,14 +28,11 @@ spotless {
 }
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.14.0-SNAPSHOT"
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.15.0-SNAPSHOT"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:0.15.0-SNAPSHOT"
 
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.14.0-SNAPSHOT"
-    compileOnly "org.projectlombok:lombok:1.18.22"
-
-    implementation "io.goodforgod:slf4j-simple-logger:0.11.0-SNAPSHOT"
-    implementation "io.goodforgod:simple-lambda:0.15.0-SNAPSHOT"
+    implementation "io.goodforgod:slf4j-simple-logger:0.13.0"
+    implementation "io.goodforgod:simple-awslambda:0.22.0-SNAPSHOT"
 
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
@@ -53,7 +52,6 @@ test {
     }
 }
 
-mainClassName = "io.goodforgod.simplelambda.LambdaEntrypoint"
 jar.enabled = true
 shadowJar {
     mergeServiceFiles()

@@ -1,8 +1,6 @@
 package io.goodforgod.simplelambda.micronaut.http;
 
-import io.goodforgod.graalvm.hint.annotation.TypeHint;
-import lombok.Getter;
-import lombok.Setter;
+import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
 
 import java.util.List;
 
@@ -10,24 +8,13 @@ import java.util.List;
  * @author Anton Kurako (GoodforGod)
  * @since 20.08.2021
  */
-@TypeHint(value = { TypeHint.AccessType.ALL_DECLARED })
-@Setter
-@Getter
-public class EtherscanBlock {
+@ReflectionHint
+public record EtherscanBlock(String blockNumber,
+                             String timeStamp,
+                             String blockMiner,
+                             String blockReward,
+                             String uncleInclusionReward,
+                             List<Uncle> uncles) {
 
-    @Setter
-    @Getter
-    public static class Uncle {
-
-        private String miner;
-        private String unclePosition;
-        private String blockreward;
-    }
-
-    private String blockNumber;
-    private String timeStamp;
-    private String blockMiner;
-    private String blockReward;
-    private String uncleInclusionReward;
-    private List<Uncle> uncles;
+    public record Uncle(String miner, String unclePosition, String blockreward) {}
 }

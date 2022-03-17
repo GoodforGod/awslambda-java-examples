@@ -1,7 +1,7 @@
 package io.goodforgod.simplelambda;
 
-import io.goodforgod.aws.simplelambda.AbstractInputLambdaEntrypoint;
-import io.goodforgod.aws.simplelambda.runtime.SimpleRuntimeContext;
+import io.goodforgod.aws.lambda.simple.AbstractInputLambdaEntrypoint;
+import io.goodforgod.aws.lambda.simple.runtime.SimpleRuntimeContext;
 import io.goodforgod.graalvm.hint.annotation.InitializationHint;
 import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
 import java.util.function.Consumer;

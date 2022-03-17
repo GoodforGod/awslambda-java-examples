@@ -2,7 +2,7 @@ package io.goodforgod.simplelambda.micronaut;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.simplelambda.micronaut.MicronautInputLambdaEntrypoint;
+import io.goodforgod.aws.lambda.simple.micronaut.MicronautInputLambdaEntrypoint;
 import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
 import io.micronaut.core.annotation.Introspected;
 import jakarta.inject.Inject;
