@@ -1,13 +1,7 @@
 package io.aws.lambda.quarkus;
 
-import lombok.Data;
-
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 21.3.2021
  */
-@Data
-public class Request {
-
-    private int blockNumber;
-}
+public record Request(int blockNumber) {}

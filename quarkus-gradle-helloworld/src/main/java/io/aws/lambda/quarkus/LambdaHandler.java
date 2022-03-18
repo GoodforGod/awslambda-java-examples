@@ -2,10 +2,11 @@ package io.aws.lambda.quarkus;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-
+import java.util.UUID;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -13,17 +14,13 @@ import javax.inject.Named;
  */
 @Named("hello-world")
 @ApplicationScoped
-public class HelloWorldLambda implements RequestHandler<Request, Response> {
+public class LambdaHandler implements RequestHandler<Request, Response> {
 
-    private final ResponseService responseService;
-
-    @Inject
-    public HelloWorldLambda(ResponseService responseService) {
-        this.responseService = responseService;
-    }
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Response handleRequest(Request request, Context context) {
-        return responseService.getResponse(request);
+        logger.info("Processing User with name: {}", request.name());
+        return new Response(UUID.randomUUID().toString(), "Hello - " + request.name());
     }
 }

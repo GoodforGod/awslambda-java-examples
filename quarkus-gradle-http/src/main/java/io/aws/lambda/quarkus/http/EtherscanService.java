@@ -1,10 +1,9 @@
 package io.aws.lambda.quarkus.http;
 
 import io.vertx.ext.web.handler.HttpException;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -25,11 +24,11 @@ public class EtherscanService {
 
     public EtherscanBlock getBlockByNumber(int blockNumber) {
         final EtherscanBlockResponse response = etherscanClient.getBlockByNumber(MODULE, ACTION, blockNumber);
-        if ("1".equals(response.getStatus())) {
-            return response.getResult();
+        if ("1".equals(response.status())) {
+            return response.result();
         } else {
-            final int statusCode = Integer.parseInt(response.getStatus());
-            throw new HttpException(statusCode, response.getMessage());
+            final int statusCode = Integer.parseInt(response.status());
+            throw new HttpException(statusCode, response.message());
         }
     }
 }

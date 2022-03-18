@@ -19,14 +19,6 @@ version = rootProject.artifactVersion
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
-spotless {
-    java {
-        encoding "UTF-8"
-        removeUnusedImports()
-        eclipse().configFile "${rootDir}/config/codestyle.xml"
-    }
-}
-
 configurations {
     quarkusBom
     compileOnly.extendsFrom(quarkusBom)
@@ -35,11 +27,17 @@ configurations {
     testAnnotationProcessor.extendsFrom(quarkusBom)
 }
 
+spotless {
+    java {
+        encoding("UTF-8")
+        importOrder()
+        removeUnusedImports()
+        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
+    }
+}
+
 dependencies {
     quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:2.7.3.Final")
-
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
-    compileOnly "org.projectlombok:lombok:1.18.22"
 
     implementation "io.quarkus:quarkus-config-yaml"
     implementation "io.quarkus:quarkus-rest-client"
@@ -69,7 +67,7 @@ test {
 quarkusBuild {
     nativeArgs {
         containerBuild = true
-        buildImage = "quay.io/quarkus/ubi-quarkus-native-image:21.2-java11"
+        buildImage = "quay.io/quarkus/ubi-quarkus-native-image:22.0.0-java17"
     }
 }
 
