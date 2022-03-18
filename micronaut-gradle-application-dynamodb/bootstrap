@@ -1,0 +1,3 @@
+#!/bin/sh
+set -euo pipefail
+./application -Xmx128m -Djava.library.path=$(pwd)

@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: micronaut-gradle-function-helloworld
+    name: micronaut-gradle-application-dynamodb
     default-charset: UTF-8
 
 jackson:
