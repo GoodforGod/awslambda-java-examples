@@ -2,10 +2,10 @@ plugins {
     id "java"
     id "jacoco"
 
-    id "org.springframework.boot" version "2.5.3"
-    id "org.springframework.experimental.aot" version "0.10.2"
+    id "org.springframework.boot" version "2.6.4"
+    id "org.springframework.experimental.aot" version "0.11.3"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
-    id "org.graalvm.buildtools.native" version "0.9.2"
+    id "org.graalvm.buildtools.native" version "0.9.10"
 
     id "org.sonarqube" version "3.3"
     id "com.diffplug.spotless" version "6.1.0"
@@ -23,20 +23,32 @@ targetCompatibility = JavaVersion.VERSION_17
 
 spotless {
     java {
-        encoding "UTF-8"
+        encoding("UTF-8")
+        importOrder()
         removeUnusedImports()
-        eclipse().configFile "${rootDir}/config/codestyle.xml"
+        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
     }
 }
 
-dependencies {
-    compileOnly "org.projectlombok:lombok:1.18.22"
+configurations {
+    all {
+        resolutionStrategy {
+            cacheChangingModulesFor 0, "seconds" // check for updates every build
+        }
+    }
+    awssdkBom
+    compileOnly.extendsFrom(awssdkBom)
+    implementation.extendsFrom(awssdkBom)
+    annotationProcessor.extendsFrom(awssdkBom)
+    testAnnotationProcessor.extendsFrom(awssdkBom)
+}
 
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
+dependencies {
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.17.118")
 
     implementation "org.springframework.boot:spring-boot-starter"
     implementation "org.springframework.experimental:spring-native"
-    implementation "org.springframework.experimental:spring-native-configuration:0.10.2"
+    implementation "org.springframework.experimental:spring-native-configuration:0.11.3"
     implementation "org.springframework.boot:spring-boot-starter-webflux"
     implementation "org.springframework.cloud:spring-cloud-function-web:3.2.2"
     implementation "org.springframework.cloud:spring-cloud-function-context:3.2.2"
@@ -44,6 +56,11 @@ dependencies {
 
     implementation "com.amazonaws:aws-lambda-java-events:3.11.0"
     implementation "com.amazonaws:aws-lambda-java-core:1.2.1"
+
+    implementation "commons-logging:commons-logging:1.2"
+    implementation("software.amazon.awssdk:dynamodb") {
+        exclude group: "software.amazon.awssdk", module: "netty-nio-client"
+    }
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude group: "org.junit.vintage", module: "junit-vintage-engine"

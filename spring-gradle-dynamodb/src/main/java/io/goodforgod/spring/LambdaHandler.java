@@ -1,19 +1,11 @@
-package io.goodforgod.simplelambda.micronaut;
+package io.goodforgod.spring;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.lambda.simple.micronaut.MicronautInputLambdaEntrypoint;
-import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
-import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
-import io.micronaut.core.annotation.Introspected;
-import jakarta.inject.Singleton;
 import java.util.Map;
 import java.util.UUID;
-import org.apache.commons.logging.LogFactory;
-import org.apache.commons.logging.impl.LogFactoryImpl;
-import org.apache.commons.logging.impl.SimpleLog;
+import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
@@ -22,13 +14,15 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 
 /**
  * @author Anton Kurako (GoodforGod)
- * @since 31.07.2021
+ * @since 13.8.2021
  */
-@ReflectionHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
-@NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class)
-@Introspected
-@Singleton
-public class LambdaHandler implements RequestHandler<Request, Response> {
+@Service
+public class LambdaHandler implements Function<Request, Response> {
+
+    /**
+     * Write that in AWS Lambda Handler name (Runtime Settings)
+     */
+    public static final String HANDLER_NAME = "hello-world";
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -37,7 +31,7 @@ public class LambdaHandler implements RequestHandler<Request, Response> {
             .build();
 
     @Override
-    public Response handleRequest(Request request, Context context) {
+    public Response apply(Request request) {
         logger.info("Processing User with name: {}", request.name());
 
         final String id = UUID.randomUUID().toString();
