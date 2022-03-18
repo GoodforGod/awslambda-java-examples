@@ -13,6 +13,8 @@ repositories {
     mavenCentral()
 }
 
+mainClassName = "io.goodforgod.micronaut.LambdaEntrypoint"
+
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
@@ -37,14 +39,12 @@ micronaut {
 }
 
 dependencies {
-    annotationProcessor "org.projectlombok:lombok:1.18.22"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
-
-    compileOnly "org.projectlombok:lombok:1.18.22"
+    compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 
-    implementation "org.slf4j:slf4j-simple:1.7.32"
+    implementation "org.slf4j:slf4j-simple:1.7.36"
     implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
@@ -54,7 +54,6 @@ dependencies {
     testImplementation "io.micronaut.test:micronaut-test-junit5"
     testImplementation "io.micronaut.test:micronaut-test-core"
 
-    testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
     testImplementation "org.junit.jupiter:junit-jupiter-api"
     testImplementation "org.junit.jupiter:junit-jupiter-params"
@@ -73,7 +72,6 @@ test {
     }
 }
 
-mainClassName = "io.goodforgod.micronaut.LambdaEntrypoint"
 jar.enabled = true
 shadowJar {
     mergeServiceFiles()

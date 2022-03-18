@@ -1,4 +1,4 @@
-package io.aws.lambda.micronaut;
+package io.goodforgod.micronaut;
 
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.micronaut.core.annotation.Nullable;
@@ -22,6 +22,6 @@ public class LambdaEntrypoint extends AbstractMicronautLambdaRuntime<Request, Re
     @Override
     @Nullable
     protected RequestHandler<Request, Response> createRequestHandler(String... args) {
-        return new HelloWorldLambda(new ResponseService());
+        return new LambdaHandler();
     }
 }

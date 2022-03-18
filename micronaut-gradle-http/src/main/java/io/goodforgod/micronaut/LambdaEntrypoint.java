@@ -23,6 +23,6 @@ public class LambdaEntrypoint extends AbstractMicronautLambdaRuntime<Request, Re
     @Override
     @Nullable
     protected RequestHandler<Request, Response> createRequestHandler(String... args) {
-        return new HelloWorldLambda(new ResponseService(new EtherscanService()));
+        return new LambdaHandler(new EtherscanService());
     }
 }
