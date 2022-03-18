@@ -30,7 +30,7 @@ spotless {
 configurations {
     all {
         resolutionStrategy {
-            cacheChangingModulesFor 0, 'seconds' // check for updates every build
+            cacheChangingModulesFor 0, "seconds" // check for updates every build
         }
     }
     awssdkBom

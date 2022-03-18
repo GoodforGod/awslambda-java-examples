@@ -38,7 +38,22 @@ micronaut {
     }
 }
 
+configurations {
+    all {
+        resolutionStrategy {
+            cacheChangingModulesFor 0, "seconds" // check for updates every build
+        }
+    }
+    awssdkBom
+    compileOnly.extendsFrom(awssdkBom)
+    implementation.extendsFrom(awssdkBom)
+    annotationProcessor.extendsFrom(awssdkBom)
+    testAnnotationProcessor.extendsFrom(awssdkBom)
+}
+
 dependencies {
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.17.118")
+
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
     compileOnly "io.micronaut:micronaut-inject-java"
@@ -48,6 +63,11 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
+
+    implementation "commons-logging:commons-logging:1.2"
+    implementation("software.amazon.awssdk:dynamodb") {
+        exclude group: "software.amazon.awssdk", module: "netty-nio-client"
+    }
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
 
