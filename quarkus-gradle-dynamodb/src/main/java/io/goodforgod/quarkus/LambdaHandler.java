@@ -1,4 +1,4 @@
-package io.aws.lambda.quarkus;
+package io.goodforgod.quarkus;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;

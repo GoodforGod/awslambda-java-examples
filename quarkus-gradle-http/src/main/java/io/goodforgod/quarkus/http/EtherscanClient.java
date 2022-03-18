@@ -1,4 +1,4 @@
-package io.aws.lambda.quarkus.http;
+package io.goodforgod.quarkus.http;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

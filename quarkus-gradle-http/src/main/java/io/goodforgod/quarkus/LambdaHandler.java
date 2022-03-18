@@ -1,9 +1,9 @@
-package io.aws.lambda.quarkus;
+package io.goodforgod.quarkus;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.aws.lambda.quarkus.http.EtherscanBlock;
-import io.aws.lambda.quarkus.http.EtherscanService;
+import io.goodforgod.quarkus.http.EtherscanBlock;
+import io.goodforgod.quarkus.http.EtherscanService;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import org.slf4j.Logger;

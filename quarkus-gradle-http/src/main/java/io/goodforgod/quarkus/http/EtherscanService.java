@@ -1,4 +1,4 @@
-package io.aws.lambda.quarkus.http;
+package io.goodforgod.quarkus.http;
 
 import io.vertx.ext.web.handler.HttpException;
 import javax.inject.Inject;

@@ -1,4 +1,4 @@
-package io.aws.lambda.quarkus;
+package io.goodforgod.quarkus;
 
 /**
  * @author Anton Kurako (GoodforGod)

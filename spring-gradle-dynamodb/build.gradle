@@ -71,7 +71,7 @@ dependencies {
 }
 
 bootJar {
-    mainClass = "io.aws.lambda.spring.LambdaEntrypoint"
+    mainClass = "io.goodforgod.spring.LambdaEntrypoint"
 }
 
 bootBuildImage {
