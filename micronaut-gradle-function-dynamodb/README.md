@@ -12,8 +12,8 @@ Template for Micronaut 2 service for Java 11+.
 ## Build
 
 ```shell
-docker build -t micronaut-gradle-http .
-docker run --rm --entrypoint cat micronaut-gradle-http /home/application/function.zip > build/function.zip
+docker build -t micronaut-gradle-function-dynamodb .
+docker run --rm --entrypoint cat micronaut-gradle-function-dynamodb /home/application/function.zip > build/function.zip
 ```
 
 ## SAM

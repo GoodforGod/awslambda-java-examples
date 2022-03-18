@@ -10,9 +10,9 @@ pluginManagement {
 
 rootProject.name = "awslambda-java-examples"
 
-include "micronaut-gradle-helloworld"
-include "micronaut-gradle-http"
-include "micronaut-gradle-dynamodb"
+include "micronaut-gradle-function-helloworld"
+include "micronaut-gradle-function-http"
+include "micronaut-gradle-function-dynamodb"
 include "quarkus-gradle-helloworld"
 include "quarkus-gradle-http"
 include "quarkus-gradle-dynamodb"

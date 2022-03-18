@@ -12,8 +12,8 @@ Template for Micronaut 2 service for Java 11+.
 ## Build
 
 ```shell
-docker build -t micronaut-gradle-helloworld.
-docker run --rm --entrypoint cat micronaut-gradle-helloworld/home/application/function.zip > build/function.zip
+docker build -t micronaut-gradle-function-helloworld .
+docker run --rm --entrypoint cat micronaut-gradle-function-helloworld /home/application/function.zip > build/function.zip
 ```
 
 ## SAM

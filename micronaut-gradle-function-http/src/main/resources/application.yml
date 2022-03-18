@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: micronaut-gradle-dynamodb
+    name: micronaut-gradle-function-http
     default-charset: UTF-8
 
 jackson:
