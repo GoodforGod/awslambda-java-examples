@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
  * @author GoodforGod
  * @since 27.10.2020
  */
-class HelloWorldLambdaTests extends Assertions {
+class LambdaHandlerTests extends Assertions {
 
     private static final RuntimeContext CONTEXT = new LambdaEntrypoint().getRuntimeContext();
 

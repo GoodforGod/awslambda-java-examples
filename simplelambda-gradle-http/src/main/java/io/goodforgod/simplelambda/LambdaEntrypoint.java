@@ -28,8 +28,7 @@ public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
         return context -> {
             final Converter converter = context.getBean(Converter.class);
             final SimpleHttpClient httpClient = context.getBean(SimpleHttpClient.class);
-            final HelloWorldLambda lambda = new HelloWorldLambda(
-                    new ResponseService(new EtherscanService(converter, httpClient)));
+            final LambdaHandler lambda = new LambdaHandler(new EtherscanService(converter, httpClient));
             context.registerBean(lambda);
         };
     }

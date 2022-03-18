@@ -1,5 +1,7 @@
 package io.goodforgod.simplelambda;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.goodforgod.aws.lambda.simple.error.LambdaException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +16,7 @@ import org.slf4j.LoggerFactory;
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
-public class ResponseService {
+public class LambdaHandler implements RequestHandler<Request, Response> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -23,7 +25,17 @@ public class ResponseService {
             VALUES (?, ?);
             """;
 
-    public Response getResponse(Request request) {
+    public LambdaHandler() {
+        final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Response handleRequest(Request request, Context context) {
         logger.info("Processing User with name: {}", request.name());
         final String id = UUID.randomUUID().toString();
 

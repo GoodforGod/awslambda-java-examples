@@ -5,8 +5,10 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.goodforgod.aws.lambda.simple.micronaut.MicronautInputLambdaEntrypoint;
 import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
 import io.micronaut.core.annotation.Introspected;
-import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import java.util.UUID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -15,17 +17,13 @@ import jakarta.inject.Singleton;
 @NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class)
 @Introspected
 @Singleton
-public class HelloWorldLambda implements RequestHandler<Request, Response> {
+public class LambdaHandler implements RequestHandler<Request, Response> {
 
-    private final ResponseService responseService;
-
-    @Inject
-    public HelloWorldLambda(ResponseService responseService) {
-        this.responseService = responseService;
-    }
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Response handleRequest(Request request, Context context) {
-        return responseService.getResponse(request);
+        logger.info("Processing User with name: {}", request.name());
+        return new Response(UUID.randomUUID().toString(), "Hello - " + request.name());
     }
 }

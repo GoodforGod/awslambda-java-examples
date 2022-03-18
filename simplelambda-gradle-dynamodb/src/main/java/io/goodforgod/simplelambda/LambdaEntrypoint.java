@@ -28,7 +28,7 @@ public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
     @Override
     protected Consumer<SimpleRuntimeContext> setupInCompileTime() {
         return context -> {
-            final HelloWorldLambda lambda = new HelloWorldLambda(new ResponseService());
+            final LambdaHandler lambda = new LambdaHandler();
             context.registerBean(lambda);
         };
     }

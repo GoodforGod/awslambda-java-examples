@@ -1,5 +1,7 @@
 package io.goodforgod.simplelambda;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import java.util.Map;
 import java.util.UUID;
 import org.slf4j.Logger;
@@ -14,7 +16,7 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
-public class ResponseService {
+public class LambdaHandler implements RequestHandler<Request, Response> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -22,11 +24,11 @@ public class ResponseService {
             .region(Region.EU_CENTRAL_1)
             .build();
 
-    public Response getResponse(Request request) {
+    @Override
+    public Response handleRequest(Request request, Context context) {
         logger.info("Processing User with name: {}", request.name());
 
         final String id = UUID.randomUUID().toString();
-
         final PutItemResponse response = client.putItem(PutItemRequest.builder()
                 .tableName("Names")
                 .item(Map.of("id", AttributeValue.builder().s(id).build(),
@@ -34,7 +36,6 @@ public class ResponseService {
                 .build());
 
         logger.info("DDB response code: {}", response.sdkHttpResponse().statusCode());
-
         return new Response(id, "Hello - " + request.name());
     }
 }

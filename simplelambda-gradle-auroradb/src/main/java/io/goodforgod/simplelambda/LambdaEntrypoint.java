@@ -44,14 +44,7 @@ public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
     @Override
     protected Consumer<SimpleRuntimeContext> setupInCompileTime() {
         return context -> {
-            final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
-            try {
-                Class.forName(JDBC_DRIVER);
-            } catch (ClassNotFoundException e) {
-                throw new IllegalStateException(e.getMessage(), e);
-            }
-
-            final HelloWorldLambda lambda = new HelloWorldLambda(new ResponseService());
+            final LambdaHandler lambda = new LambdaHandler();
             context.registerBean(lambda);
         };
     }

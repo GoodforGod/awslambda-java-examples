@@ -1,5 +1,7 @@
 package io.goodforgod.simplelambda;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
 import io.goodforgod.simplelambda.http.EtherscanBlock;
 import io.goodforgod.simplelambda.http.EtherscanService;
 import org.slf4j.Logger;
@@ -9,17 +11,18 @@ import org.slf4j.LoggerFactory;
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
-public class ResponseService {
+public class LambdaHandler implements RequestHandler<Request, Response> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final EtherscanService etherscanService;
 
-    public ResponseService(EtherscanService etherscanService) {
+    public LambdaHandler(EtherscanService etherscanService) {
         this.etherscanService = etherscanService;
     }
 
-    public Response getResponse(Request request) {
+    @Override
+    public Response handleRequest(Request request, Context context) {
         logger.info("Processing Block with number: {}", request.blockNumber());
         final long started = System.currentTimeMillis();
 

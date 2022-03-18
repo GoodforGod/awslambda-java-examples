@@ -1,5 +1,9 @@
 package io.goodforgod.simplelambda.micronaut;
 
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import io.goodforgod.aws.lambda.simple.micronaut.MicronautInputLambdaEntrypoint;
+import io.goodforgod.graalvm.hint.annotation.NativeImageHint;
 import io.goodforgod.simplelambda.micronaut.http.EtherscanBlock;
 import io.goodforgod.simplelambda.micronaut.http.EtherscanService;
 import io.micronaut.core.annotation.Introspected;
@@ -12,20 +16,22 @@ import org.slf4j.LoggerFactory;
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
+@NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class)
 @Introspected
 @Singleton
-public class ResponseService {
+public class LambdaHandler implements RequestHandler<Request, Response> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final EtherscanService etherscanService;
 
     @Inject
-    public ResponseService(EtherscanService etherscanService) {
+    public LambdaHandler(EtherscanService etherscanService) {
         this.etherscanService = etherscanService;
     }
 
-    public Response getResponse(Request request) {
+    @Override
+    public Response handleRequest(Request request, Context context) {
         logger.info("Processing Block with number: {}", request.blockNumber());
         final long started = System.currentTimeMillis();
 

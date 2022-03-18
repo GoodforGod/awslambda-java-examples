@@ -1,12 +1,12 @@
-package io.goodforgod.simplelambda;
+package io.goodforgod.simplelambda.micronaut;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.lambda.events.gateway.APIGatewayV2HTTPEvent;
 import io.goodforgod.aws.lambda.simple.EventContextBuilder;
-import io.goodforgod.aws.lambda.simple.convert.Converter;
 import io.goodforgod.aws.lambda.simple.handler.EventHandler;
+import io.goodforgod.aws.lambda.simple.handler.impl.BodyEventHandler;
 import io.goodforgod.aws.lambda.simple.handler.impl.InputEventHandler;
+import io.goodforgod.aws.lambda.simple.micronaut.MicronautBodyLambdaEntrypoint;
 import io.goodforgod.aws.lambda.simple.reactive.SubscriberUtils;
 import io.goodforgod.aws.lambda.simple.runtime.RuntimeContext;
 import io.goodforgod.aws.lambda.simple.utils.InputStreamUtils;
@@ -23,9 +23,9 @@ import org.junit.jupiter.api.Test;
  * @author GoodforGod
  * @since 27.10.2020
  */
-class HelloWorldLambdaTests extends Assertions {
+class LambdaHandlerTests extends Assertions {
 
-    private static final RuntimeContext CONTEXT = new LambdaEntrypoint().getRuntimeContext();
+    private static final RuntimeContext CONTEXT = new MicronautBodyLambdaEntrypoint().getRuntimeContext();
 
     @BeforeAll
     public static void setup() {
@@ -38,11 +38,11 @@ class HelloWorldLambdaTests extends Assertions {
     }
 
     @Test
-    void inputEventHandled() {
-        final EventHandler eventHandler = CONTEXT.getBean(InputEventHandler.class);
+    void gatewayEvent() {
+        final EventHandler eventHandler = CONTEXT.getBean(BodyEventHandler.class);
         final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
 
-        final String eventAsString = "{\"name\":\"Steeven King\"}";
+        final String eventAsString = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"blockNumber\\\":1}\"}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
         final Context eventContext = EventContextBuilder.builder().setAwsRequestId(UUID.randomUUID().toString()).build();
@@ -51,18 +51,15 @@ class HelloWorldLambdaTests extends Assertions {
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
         assertNotNull(responseAsString);
-        assertTrue(responseAsString.contains("Hello - Steeven King"));
+        assertTrue(responseAsString.contains("{\"blockReward\":\"5000000000000000000\""));
     }
 
     @Test
-    void bodyEventHandled() {
+    void directEvent() {
         final EventHandler eventHandler = CONTEXT.getBean(InputEventHandler.class);
         final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
-        final Converter converter = CONTEXT.getBean(Converter.class);
 
-        final String eventBody = "{\"name\":\"Steeven King\"}";
-        final APIGatewayV2HTTPEvent event = new APIGatewayV2HTTPEvent().setBody(eventBody);
-        final String eventAsString = converter.toString(event);
+        final String eventAsString = "{\"blockNumber\":1}";
         final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
 
         final Context eventContext = EventContextBuilder.builder().setAwsRequestId(UUID.randomUUID().toString()).build();
@@ -71,6 +68,6 @@ class HelloWorldLambdaTests extends Assertions {
 
         final String responseAsString = SubscriberUtils.getPublisherString(publisher);
         assertNotNull(responseAsString);
-        assertTrue(responseAsString.contains("Hello - Steeven King"));
+        assertTrue(responseAsString.contains("{\"blockReward\":\"5000000000000000000\""));
     }
 }

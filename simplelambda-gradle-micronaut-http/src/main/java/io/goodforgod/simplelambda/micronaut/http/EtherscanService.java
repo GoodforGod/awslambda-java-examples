@@ -9,7 +9,6 @@ import io.goodforgod.http.common.uri.URIBuilder;
 import io.micronaut.core.annotation.Introspected;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
-
 import java.net.URI;
 
 /**

@@ -21,9 +21,10 @@ targetCompatibility = JavaVersion.VERSION_17
 
 spotless {
     java {
-        encoding "UTF-8"
+        encoding("UTF-8")
+        importOrder()
         removeUnusedImports()
-        eclipse().configFile "${rootDir}/config/codestyle.xml"
+        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
     }
 }
 

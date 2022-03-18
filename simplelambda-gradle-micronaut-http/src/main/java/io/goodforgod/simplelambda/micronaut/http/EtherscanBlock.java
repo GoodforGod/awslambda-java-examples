@@ -1,7 +1,6 @@
 package io.goodforgod.simplelambda.micronaut.http;
 
 import io.goodforgod.graalvm.hint.annotation.ReflectionHint;
-
 import java.util.List;
 
 /**
