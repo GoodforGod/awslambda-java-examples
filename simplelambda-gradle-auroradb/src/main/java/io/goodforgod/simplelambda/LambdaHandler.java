@@ -39,33 +39,40 @@ public class LambdaHandler implements RequestHandler<Request, Response> {
         logger.info("Processing User with name: {}", request.name());
         final String id = UUID.randomUUID().toString();
 
-        logger.info("Getting envs");
-        final String endpoint = System.getenv("AURORA_ENDPOINT");
-        final String user = System.getenv("AURORA_USER");
-        final String pass = System.getenv("AURORA_PASS");
-        final String database = System.getenv("AURORA_DB");
+        final String jdbcUrl = getJDBC();
+        final Properties info = getProperties();
 
-        final String jdbcUrl = "jdbc:mariadb:aurora//" + endpoint + ":3306/" + database;
-        logger.info("Getting connection");
-        Properties info = new Properties();
-        info.put(DefaultOptions.USER.getOptionName(), user);
-        info.put(DefaultOptions.PASSWORD.getOptionName(), pass);
-        info.put(DefaultOptions.CONNECT_TIMEOUT.getOptionName(), 2000);
-
+        logger.info("Getting connection..");
         try (final Connection connection = DriverManager.getConnection(jdbcUrl, info)) {
-            logger.info("Got connection");
+            logger.info("Got connection..");
             try (final PreparedStatement statement = connection.prepareStatement(SQL)) {
-                logger.info("Got statement");
                 statement.setString(1, id);
                 statement.setString(2, request.name());
-                logger.info("Executing statement");
+                logger.info("Executing request save statement..");
                 statement.executeUpdate();
-                logger.info("Statement executed");
+                logger.info("Statement executed..");
             }
         } catch (Exception e) {
             throw new LambdaException(e.getMessage());
         }
 
         return new Response(id, "Hello - " + request.name());
+    }
+
+    private Properties getProperties() {
+        final String user = System.getenv("AURORA_USER");
+        final String pass = System.getenv("AURORA_PASS");
+
+        final Properties properties = new Properties();
+        properties.put(DefaultOptions.USER.getOptionName(), user);
+        properties.put(DefaultOptions.PASSWORD.getOptionName(), pass);
+        properties.put(DefaultOptions.CONNECT_TIMEOUT.getOptionName(), 2000);
+        return properties;
+    }
+
+    private String getJDBC() {
+        final String endpoint = System.getenv("AURORA_ENDPOINT");
+        final String database = System.getenv("AURORA_DB");
+        return "jdbc:mariadb:aurora//" + endpoint + ":3306/" + database;
     }
 }

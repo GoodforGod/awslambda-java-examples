@@ -31,4 +31,4 @@ Resources:
     Description: URL for application
     Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/'
     Export:
-      Name: simple-withoutdi-gradle-native-lambda
+      Name: simplelambda-gradle-dynamodb

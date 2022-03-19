@@ -23,7 +23,7 @@ spotless {
         encoding("UTF-8")
         importOrder()
         removeUnusedImports()
-        eclipse().configFile("${rootDir}/config/codestyle.xml")
+        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
     }
 }
 
@@ -67,6 +67,13 @@ test {
         html.enabled(false)
         junitXml.enabled(false)
     }
+
+    environment([
+            "AURORA_ENDPOINT": "1",
+            "AURORA_USER"    : "1",
+            "AURORA_PASS"    : "1",
+            "AURORA_DB"      : "1",
+    ])
 }
 
 jar.enabled = true

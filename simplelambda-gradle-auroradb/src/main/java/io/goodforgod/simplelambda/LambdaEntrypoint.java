@@ -12,7 +12,8 @@ import org.mariadb.jdbc.util.Options;
  * @author Anton Kurako (GoodforGod)
  * @since 16.09.2021
  */
-@NativeImageHint(entrypoint = LambdaEntrypoint.class, options = NativeImageOptions.ALLOW_INCOMPLETE_CLASSPATH)
+@NativeImageHint(entrypoint = LambdaEntrypoint.class,
+        options = { NativeImageOptions.ALLOW_INCOMPLETE_CLASSPATH, NativeImageOptions.REPORT_UNSUPPORTED })
 @InitializationHint(typeNames = {
         "io.goodforgod.simplelambda",
         "java.sql.DriverManager",

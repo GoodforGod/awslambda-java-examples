@@ -18,8 +18,8 @@ Check bootstrap file that it have **LF line** (Unix one) separator.
 ## Build
 
 ```shell
-docker build -t simple-withoutdi-gradle-native-lambda .
-docker run --rm --entrypoint cat simple-withoutdi-gradle-native-lambda /home/application/function.zip > build/function.zip
+docker build -t simplelambda-gradle-dynamodb .
+docker run --rm --entrypoint cat simplelambda-gradle-dynamodb /home/application/function.zip > build/function.zip
 ```
 
 ## SAM
