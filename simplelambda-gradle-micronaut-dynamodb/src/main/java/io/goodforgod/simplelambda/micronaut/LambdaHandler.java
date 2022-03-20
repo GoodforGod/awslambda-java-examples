@@ -14,6 +14,7 @@ import org.apache.commons.logging.impl.LogFactoryImpl;
 import org.apache.commons.logging.impl.SimpleLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import software.amazon.awssdk.http.apache.ApacheHttpClient;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
@@ -33,6 +34,7 @@ public class LambdaHandler implements RequestHandler<Request, Response> {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final DynamoDbClient client = DynamoDbClient.builder()
+            .httpClient(ApacheHttpClient.create())
             .region(Region.EU_CENTRAL_1)
             .build();
 

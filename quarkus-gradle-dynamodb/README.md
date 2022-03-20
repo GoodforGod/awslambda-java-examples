@@ -12,7 +12,7 @@ Template for Quarkus.
 ## Build
 
 ```shell
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
+./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-native-image:22.0.0-java17
 ```
 
 ## SAM

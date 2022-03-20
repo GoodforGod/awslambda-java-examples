@@ -13,6 +13,9 @@ rootProject.name = "awslambda-java-examples"
 include "micronaut-gradle-function-helloworld"
 include "micronaut-gradle-function-http"
 include "micronaut-gradle-function-dynamodb"
+include "micronaut-gradle-application-helloworld"
+include "micronaut-gradle-application-http"
+include "micronaut-gradle-application-dynamodb"
 include "quarkus-gradle-helloworld"
 include "quarkus-gradle-http"
 include "quarkus-gradle-dynamodb"
@@ -26,7 +29,4 @@ include "simplelambda-gradle-micronaut-dynamodb"
 include "spring-gradle-helloworld"
 include "spring-gradle-http"
 include "spring-gradle-dynamodb"
-include 'micronaut-gradle-application-helloworld'
-include 'micronaut-gradle-application-http'
-include 'micronaut-gradle-application-dynamodb'
 

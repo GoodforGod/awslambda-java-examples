@@ -41,6 +41,7 @@ dependencies {
     implementation "io.quarkus:quarkus-amazon-lambda"
 
     implementation "commons-logging:commons-logging:1.2"
+    implementation "software.amazon.awssdk:apache-client"
     implementation("software.amazon.awssdk:dynamodb") {
         exclude group: "software.amazon.awssdk", module: "netty-nio-client"
     }
@@ -65,6 +66,9 @@ test {
 }
 
 quarkusBuild {
+    configurations {
+
+    }
     nativeArgs {
         containerBuild = true
         buildImage = "quay.io/quarkus/ubi-quarkus-native-image:22.0.0-java17"

@@ -65,6 +65,7 @@ dependencies {
     implementation "io.micronaut.aws:micronaut-function-aws-api-proxy"
 
     implementation "commons-logging:commons-logging:1.2"
+    implementation "software.amazon.awssdk:apache-client"
     implementation("software.amazon.awssdk:dynamodb") {
         exclude group: "software.amazon.awssdk", module: "netty-nio-client"
     }

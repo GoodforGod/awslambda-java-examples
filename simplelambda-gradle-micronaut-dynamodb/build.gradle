@@ -66,6 +66,7 @@ dependencies {
     implementation "io.goodforgod:simple-awslambda-micronaut:0.22.0-SNAPSHOT"
 
     implementation "commons-logging:commons-logging:1.2"
+    implementation "software.amazon.awssdk:apache-client"
     implementation("software.amazon.awssdk:dynamodb") {
         exclude group: "software.amazon.awssdk", module: "netty-nio-client"
     }
