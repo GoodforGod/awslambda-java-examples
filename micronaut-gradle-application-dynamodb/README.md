@@ -1,18 +1,21 @@
-# Micronaut Lambda
-
-Template for Micronaut 2 service for Java 11+.
-
-## Features
-- Micronaut Plugin for BOM and version management.
-- Spotless for Code Style check and apply.
-- .gitignore and .gitattributes for proper ignore and symbols check.
-- .editorconfig for simple configs code style and encoding UTF-8.
-- Proper Gradle and Gradle Wrapper configuration.
+# Micronaut AWSLambda
 
 ## Build
 
+Building Micronaut AWSLambda native executable is quite easy and require 3 steps only:
+
+1) Build JAR:
+```shell
+./gradlew micronaut-gradle-application-dynamodb:shadowJar
+```
+
+2) Build native executable via Docker:
 ```shell
 docker build -t micronaut-gradle-application-dynamodb .
+```
+
+3) Extract native executable from container:
+```shell
 docker run --rm --entrypoint cat micronaut-gradle-application-dynamodb /home/application/function.zip > build/function.zip
 ```
 

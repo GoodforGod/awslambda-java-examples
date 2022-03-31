@@ -19,8 +19,8 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.15.0-SNAPSHOT"
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.15.0-SNAPSHOT"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.17.0-SNAPSHOT"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:0.17.0-SNAPSHOT"
 
     implementation "io.goodforgod:slf4j-simple-logger:0.13.0"
     implementation "io.goodforgod:simple-awslambda:0.22.0-SNAPSHOT"

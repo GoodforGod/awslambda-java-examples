@@ -39,11 +39,11 @@ micronaut {
 }
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.15.0-SNAPSHOT"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.17.0-SNAPSHOT"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
 
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.15.0-SNAPSHOT"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:0.17.0-SNAPSHOT"
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 

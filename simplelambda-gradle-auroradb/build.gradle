@@ -43,8 +43,8 @@ configurations {
 dependencies {
     awsSdkBom enforcedPlatform("software.amazon.awssdk:bom:2.17.118")
 
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.15.0-SNAPSHOT"
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.15.0-SNAPSHOT"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.17.0-SNAPSHOT"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:0.17.0-SNAPSHOT"
 
     implementation "org.mariadb.jdbc:mariadb-java-client:2.7.5"
 
