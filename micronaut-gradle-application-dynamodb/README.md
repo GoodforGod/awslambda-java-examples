@@ -21,6 +21,8 @@ docker run --rm --entrypoint cat micronaut-gradle-application-dynamodb /home/app
 
 ## SAM
 
+You can run AWS emulator (SAM) locally to emulate and test deployment like it is AWS Lambda Cloud.
+
 ```shell
 sam local start-api -t sam.yaml -p 3000
 ```
