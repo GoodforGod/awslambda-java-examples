@@ -2,9 +2,6 @@ plugins {
     id "java"
     id "jacoco"
     id "application"
-
-    id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "6.1.0"
     id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
@@ -19,15 +16,15 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.17.0-SNAPSHOT"
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.17.0-SNAPSHOT"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:1.0.0"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:1.0.0"
 
     implementation "io.goodforgod:slf4j-simple-logger:0.13.0"
     implementation "io.goodforgod:simple-awslambda:0.22.0-SNAPSHOT"
 
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.2"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.8.2"
-    testImplementation "org.junit.jupiter:junit-jupiter-params:5.8.2"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.3"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.3"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.9.3"
 }
 
 test {
@@ -38,17 +35,8 @@ test {
     }
 
     reports {
-        html.enabled(false)
-        junitXml.enabled(false)
-    }
-}
-
-spotless {
-    java {
-        encoding("UTF-8")
-        importOrder()
-        removeUnusedImports()
-        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
+        html.required = false
+        junitXml.required = false
     }
 }
 
@@ -78,7 +66,7 @@ javadoc {
 check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
-        xml.enabled(true)
+        xml.required = true
         html.destination file("${buildDir}/jacocoHtml")
     }
 }

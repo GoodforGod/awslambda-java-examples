@@ -2,11 +2,11 @@ package io.goodforgod.micronaut;
 
 import io.goodforgod.micronaut.http.EtherscanBlock;
 import io.goodforgod.micronaut.http.EtherscanService;
+import io.micronaut.configuration.arango.ArangoClient;
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
 import jakarta.inject.Inject;
-import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,15 +20,17 @@ public class LambdaController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private final ArangoClient arangoClient;
     private final EtherscanService etherscanService;
 
     @Inject
-    public LambdaController(EtherscanService etherscanService) {
+    public LambdaController(ArangoClient arangoClient, EtherscanService etherscanService) {
+        this.arangoClient = arangoClient;
         this.etherscanService = etherscanService;
     }
 
     @Post
-    public Response getResponse(@Valid Request request) {
+    public Response getResponse(Request request) {
         logger.info("Processing Block with number: {}", request.blockNumber());
         final long started = System.currentTimeMillis();
 

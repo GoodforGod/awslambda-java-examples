@@ -2,10 +2,7 @@ plugins {
     id "java"
     id "jacoco"
 
-    id "io.quarkus" version "2.7.3.Final"
-    id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "6.1.0"
-}
+    id "io.quarkus" version "3.2.2.Final"}
 
 repositories {
     mavenLocal()
@@ -27,17 +24,8 @@ configurations {
     testAnnotationProcessor.extendsFrom(quarkusBom)
 }
 
-spotless {
-    java {
-        encoding("UTF-8")
-        importOrder()
-        removeUnusedImports()
-        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
-    }
-}
-
 dependencies {
-    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:2.7.3.Final")
+    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:3.2.2.Final")
 
     implementation "io.quarkus:quarkus-config-yaml"
     implementation "io.quarkus:quarkus-rest-client"
@@ -59,8 +47,8 @@ test {
     }
 
     reports {
-        html.enabled(false)
-        junitXml.enabled(false)
+        html.required = false
+        junitXml.required = false
     }
 }
 
@@ -87,7 +75,7 @@ javadoc {
 check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
-        xml.enabled(true)
+        xml.required = true
         html.destination file("${buildDir}/jacocoHtml")
     }
 }

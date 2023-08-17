@@ -1,4 +1,4 @@
-FROM goodforgod/amazonlinux-graalvm:22.0.0.2-java17-amd64
+FROM goodforgod/amazonlinux-graalvm:22.3.1-java17-amd64
 
 ADD build/libs/*all.jar build/libs/application.jar
 

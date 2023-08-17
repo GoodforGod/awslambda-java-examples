@@ -2,11 +2,8 @@ plugins {
     id "java"
     id "jacoco"
     id "application"
-
-    id "org.sonarqube" version "3.3"
-    id "com.diffplug.spotless" version "6.1.0"
     id "com.github.johnrengelman.shadow" version "7.1.2"
-    id "io.micronaut.application" version "3.3.0"
+    id "io.micronaut.application" version "4.0.2"
 }
 
 repositories {
@@ -20,7 +17,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 micronaut {
-    version("3.3.4")
+    version("4.0.2")
     processing {
         incremental(true)
         module(project.name)
@@ -30,11 +27,11 @@ micronaut {
 }
 
 dependencies {
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:0.17.0-SNAPSHOT"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:1.0.0"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
 
-    compileOnly "io.goodforgod:graalvm-hint-annotations:0.17.0-SNAPSHOT"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:1.0.0"
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 
@@ -57,17 +54,8 @@ test {
     }
 
     reports {
-        html.enabled(false)
-        junitXml.enabled(false)
-    }
-}
-
-spotless {
-    java {
-        encoding("UTF-8")
-        importOrder()
-        removeUnusedImports()
-        eclipse("4.21.0").configFile("${rootDir}/config/codestyle.xml")
+        html.required = false
+        junitXml.required = false
     }
 }
 
@@ -96,7 +84,7 @@ javadoc {
 check.dependsOn jacocoTestReport
 jacocoTestReport {
     reports {
-        xml.enabled(true)
+        xml.required = true
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
