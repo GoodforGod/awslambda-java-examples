@@ -31,7 +31,7 @@ dependencies {
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 
-    implementation "org.slf4j:slf4j-simple:1.7.36"
+    implementation "io.goodforgod:slf4j-simple-logger:2.0.0"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
 

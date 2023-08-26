@@ -1,4 +1,4 @@
-FROM spring-gradle-dynamodb:0.9.0-SNAPSHOT
+FROM spring-gradle-dynamodb:1.0.0-SNAPSHOT
 
 USER root
 

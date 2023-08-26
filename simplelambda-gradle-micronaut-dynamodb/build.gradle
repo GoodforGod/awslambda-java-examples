@@ -40,18 +40,18 @@ configurations {
 }
 
 dependencies {
-    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.116")
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
 
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:1.0.0"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:1.1.0"
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
 
-    compileOnly "io.goodforgod:graalvm-hint-annotations:1.0.0"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:1.1.0"
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 
-    implementation "io.goodforgod:slf4j-simple-logger:0.13.0"
-    implementation "io.goodforgod:simple-awslambda-micronaut:0.22.0-SNAPSHOT"
+    implementation "io.goodforgod:slf4j-simple-logger:2.0.0"
+    implementation "io.goodforgod:simple-awslambda-micronaut:1.0.0-SNAPSHOT"
 
     implementation "commons-logging:commons-logging:1.2"
     implementation "software.amazon.awssdk:apache-client"

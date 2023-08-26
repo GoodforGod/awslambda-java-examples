@@ -3,8 +3,8 @@ pluginManagement {
         gradlePluginPortal()
         mavenLocal()
         mavenCentral()
-        maven{ url "https://repo.spring.io/release/" }
-        maven{ url "https://maven.springframework.org/release/" }
+        maven { url "https://repo.spring.io/release/" }
+        maven { url "https://maven.springframework.org/release/" }
     }
 }
 

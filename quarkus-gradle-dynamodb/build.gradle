@@ -2,7 +2,8 @@ plugins {
     id "java"
     id "jacoco"
 
-    id "io.quarkus" version "3.2.2.Final"}
+    id "io.quarkus" version "3.3.0"
+}
 
 repositories {
     mavenLocal()
@@ -22,8 +23,8 @@ configurations {
 }
 
 dependencies {
-    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:3.2.2.Final")
-    quarkusBom enforcedPlatform("software.amazon.awssdk:bom:2.20.116")
+    quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:3.3.0")
+    quarkusBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
 
     implementation "io.quarkus:quarkus-resteasy"
     implementation "io.quarkus:quarkus-amazon-lambda"

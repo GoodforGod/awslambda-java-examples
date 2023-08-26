@@ -39,14 +39,14 @@ configurations {
 }
 
 dependencies {
-    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.116")
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
 
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
     compileOnly "io.micronaut:micronaut-inject-java"
     compileOnly "org.graalvm.nativeimage:svm"
 
-    implementation "org.slf4j:slf4j-simple:1.7.36"
+    implementation "io.goodforgod:slf4j-simple-logger:2.0.0"
     implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut.aws:micronaut-function-aws"
     implementation "io.micronaut.aws:micronaut-function-aws-api-proxy"

@@ -29,10 +29,10 @@ configurations {
 }
 
 dependencies {
-    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.116")
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
 
-    annotationProcessor "io.goodforgod:graalvm-hint-processor:1.0.0"
-    compileOnly "io.goodforgod:graalvm-hint-annotations:1.0.0"
+    annotationProcessor "io.goodforgod:graalvm-hint-processor:1.1.0"
+    compileOnly "io.goodforgod:graalvm-hint-annotations:1.1.0"
 
     implementation "commons-logging:commons-logging:1.2"
     implementation "software.amazon.awssdk:apache-client"
@@ -40,8 +40,8 @@ dependencies {
         exclude group: "software.amazon.awssdk", module: "netty-nio-client"
     }
 
-    implementation "io.goodforgod:slf4j-simple-logger:0.13.0"
-    implementation "io.goodforgod:simple-awslambda:0.22.0-SNAPSHOT"
+    implementation "io.goodforgod:slf4j-simple-logger:2.0.0"
+    implementation "io.goodforgod:simple-awslambda:1.0.0-SNAPSHOT"
 
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.9.3"
     testImplementation "org.junit.jupiter:junit-jupiter-api:5.9.3"
