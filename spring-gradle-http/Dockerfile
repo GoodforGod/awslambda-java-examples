@@ -2,8 +2,8 @@ FROM spring-gradle-http:1.0.0-SNAPSHOT
 
 USER root
 
-RUN apt update
-RUN apt install zip --yes
+#RUN apt update
+#RUN apt install zip --yes
 
 ADD bootstrap bootstrap
 

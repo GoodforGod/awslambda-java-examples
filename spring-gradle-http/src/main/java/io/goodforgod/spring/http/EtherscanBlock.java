@@ -13,5 +13,5 @@ public record EtherscanBlock(String blockNumber,
                              String uncleInclusionReward,
                              List<Uncle> uncles) {
 
-    public record Uncle(String miner, String unclePosition, String blockreward) {}
+    public record Uncle(String miner, String unclePosition, String blockreward) { }
 }

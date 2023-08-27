@@ -40,7 +40,8 @@ bootJar {
 }
 
 bootBuildImage {
-    builder = "paketobuildpacks/builder:tiny"
+    builder = "paketobuildpacks/builder:base"
+    buildpacks = ["gcr.io/paketo-buildpacks/java-native-image:8.16.0"]
     environment = [
             "BP_NATIVE_IMAGE": "true"
     ]
