@@ -1,8 +1,5 @@
 package io.goodforgod.spring;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,17 +9,16 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import software.amazon.awssdk.services.dynamodb.model.PutItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
 
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Function;
+
 /**
  * @author Anton Kurako (GoodforGod)
  * @since 13.8.2021
  */
 @Service
 public class LambdaHandler implements Function<Request, Response> {
-
-    /**
-     * Write that in AWS Lambda Handler name (Runtime Settings)
-     */
-    public static final String HANDLER_NAME = "hello-world";
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

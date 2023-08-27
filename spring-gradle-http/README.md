@@ -1,6 +1,6 @@
 # Spring Lambda
 
-Template for spring 2 service for Java 11+.
+Template for Spring 3 service for Java 17+.
 
 ## Features
 - spring Plugin for BOM and version management.

@@ -24,7 +24,7 @@ configurations {
 
 dependencies {
     quarkusBom enforcedPlatform("io.quarkus:quarkus-bom:3.3.0")
-    quarkusBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
+    quarkusBom enforcedPlatform("software.amazon.awssdk:bom:2.20.135")
 
     implementation "io.quarkus:quarkus-resteasy"
     implementation "io.quarkus:quarkus-amazon-lambda"

@@ -40,7 +40,7 @@ configurations {
 }
 
 dependencies {
-    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.135")
 
     annotationProcessor "io.goodforgod:graalvm-hint-processor:1.1.0"
     annotationProcessor "io.micronaut:micronaut-inject-java"

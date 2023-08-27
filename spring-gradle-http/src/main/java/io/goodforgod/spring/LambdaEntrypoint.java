@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Anton Kurako (GoodforGod)
  * @since 13.8.2021
  */
-@RegisterReflectionForBinding({Request.class, Response.class, EtherscanBlock.class, EtherscanBlockResponse.class})
 @SpringBootApplication
 public class LambdaEntrypoint {
 

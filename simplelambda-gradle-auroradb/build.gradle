@@ -29,7 +29,7 @@ configurations {
 }
 
 dependencies {
-    awsSdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
+    awsSdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.135")
 
     annotationProcessor "io.goodforgod:graalvm-hint-processor:1.1.0"
     compileOnly "io.goodforgod:graalvm-hint-annotations:1.1.0"

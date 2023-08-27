@@ -39,7 +39,7 @@ configurations {
 }
 
 dependencies {
-    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.135")
 
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"

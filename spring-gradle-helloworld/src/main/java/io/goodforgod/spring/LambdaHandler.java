@@ -1,10 +1,11 @@
 package io.goodforgod.spring;
 
-import java.util.UUID;
-import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
+import java.util.function.Function;
 
 /**
  * @author Anton Kurako (GoodforGod)
@@ -12,11 +13,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LambdaHandler implements Function<Request, Response> {
-
-    /**
-     * Write that in AWS Lambda Handler name (Runtime Settings)
-     */
-    public static final String HANDLER_NAME = "hello-world";
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

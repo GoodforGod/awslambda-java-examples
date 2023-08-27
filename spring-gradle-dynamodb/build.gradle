@@ -19,11 +19,6 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 configurations {
-    all {
-        resolutionStrategy {
-            cacheChangingModulesFor 0, "seconds" // check for updates every build
-        }
-    }
     awssdkBom
     compileOnly.extendsFrom(awssdkBom)
     implementation.extendsFrom(awssdkBom)
@@ -32,11 +27,9 @@ configurations {
 }
 
 dependencies {
-    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.131")
+    awssdkBom enforcedPlatform("software.amazon.awssdk:bom:2.20.135")
 
     implementation "org.springframework.boot:spring-boot-starter"
-    implementation "org.springframework.experimental:spring-native"
-    implementation "org.springframework.experimental:spring-native-configuration:0.11.3"
     implementation "org.springframework.boot:spring-boot-starter-webflux"
     implementation "org.springframework.cloud:spring-cloud-function-web:4.0.5"
     implementation "org.springframework.cloud:spring-cloud-function-context:4.0.5"
@@ -64,7 +57,7 @@ bootJar {
 
 bootBuildImage {
     builder = "paketobuildpacks/builder:base"
-    buildpacks = ["gcr.io/paketo-buildpacks/java-native-image:5.5.0"]
+    buildpacks = ["gcr.io/paketo-buildpacks/java-native-image:8.16.0"]
     environment = [
             "BP_NATIVE_IMAGE": "true"
     ]

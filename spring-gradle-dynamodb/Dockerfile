@@ -8,6 +8,6 @@ RUN apt install zip --yes
 ADD bootstrap bootstrap
 
 RUN chmod +x bootstrap
-RUN chmod +x /workspace/LambdaEntrypoint
+RUN chmod +x io.goodforgod.spring.LambdaEntrypoint
 
-RUN zip -j function.zip bootstrap /workspace/LambdaEntrypoint
+RUN zip -j function.zip bootstrap io.goodforgod.spring.LambdaEntrypoint
