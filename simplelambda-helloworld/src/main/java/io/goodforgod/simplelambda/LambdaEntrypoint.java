@@ -10,7 +10,7 @@ import java.util.function.Consumer;
  * @author Anton Kurako (GoodforGod)
  * @since 16.09.2021
  */
-@NativeImageHint(entrypoint = LambdaEntrypoint.class)
+@NativeImageHint(entrypoint = LambdaEntrypoint.class, name = "application")
 @InitializationHint(typeNames = "io.goodforgod.simplelambda")
 public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
 

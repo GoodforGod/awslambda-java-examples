@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  * @author Anton Kurako (GoodforGod)
  * @since 31.07.2021
  */
-@NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class)
+@NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class, name = "application")
 @Introspected
 @Singleton
 public class LambdaHandler implements RequestHandler<Request, Response> {

@@ -6,9 +6,9 @@ import io.goodforgod.simplelambda.micronaut.http.EtherscanBlock;
 import io.goodforgod.simplelambda.micronaut.http.EtherscanService;
 import io.micronaut.context.annotation.Primary;
 import io.micronaut.context.annotation.Replaces;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 /**
  * @author Anton Kurako (GoodforGod)

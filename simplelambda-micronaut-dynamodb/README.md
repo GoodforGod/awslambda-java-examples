@@ -1,10 +1,10 @@
 ## Simple Lambda
 
-Java 17+ AWS Lambda Template with Micronaut DI support with GraalVM native compatibility.
+Java 17+ AWS Lambda Example with Micronaut DI support with GraalVM native compatibility.
 
 ## Runtime
 
-Template uses [Simple Lambda](https://github.com/GoodforGod/simple-awslambda) with GraalVM native compatibility.
+Example uses [Simple Lambda](https://github.com/GoodforGod/simple-awslambda) with GraalVM native compatibility.
 
 ## Deploy
 
@@ -27,3 +27,13 @@ docker run --rm --entrypoint cat simplelambda-micronaut-dynamodb /home/applicati
 ```shell
 sam local start-api -t sam.yaml -p 3000
 ```
+
+## Event Example
+
+Example of event to send to lambda:
+```json
+{
+  "name": "Steeven King"
+}
+```
+

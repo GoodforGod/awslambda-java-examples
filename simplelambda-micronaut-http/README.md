@@ -1,10 +1,10 @@
 ## Simple Lambda
 
-Java 17+ AWS Lambda Template with Micronaut DI support with GraalVM native compatibility.
+Java 17+ AWS Lambda Example with Micronaut DI support with GraalVM native compatibility.
 
 ## Runtime
 
-Template uses [Simple Lambda](https://github.com/GoodforGod/simple-awslambda) with GraalVM native compatibility.
+Example uses [Simple Lambda](https://github.com/GoodforGod/simple-awslambda) with GraalVM native compatibility.
 
 ## Deploy
 

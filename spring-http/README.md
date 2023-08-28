@@ -25,6 +25,15 @@ docker run --rm --entrypoint cat spring-http-function /function.zip > build/func
 sam local start-api -t sam.yaml -p 3000
 ```
 
+## Event Example
+
+Example of event to send to lambda:
+```json
+{
+  "name": "Steeven King"
+}
+```
+
 ## More
 - https://spring.io/blog/2021/03/11/announcing-spring-native-beta
 - https://spring.io/blog/2021/06/14/spring-native-0-10-0-available-now

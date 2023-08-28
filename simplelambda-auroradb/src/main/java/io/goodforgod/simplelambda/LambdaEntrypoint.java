@@ -13,6 +13,7 @@ import org.mariadb.jdbc.util.Options;
  * @since 16.09.2021
  */
 @NativeImageHint(entrypoint = LambdaEntrypoint.class,
+        name = "application",
         options = { NativeImageOptions.ALLOW_INCOMPLETE_CLASSPATH, NativeImageOptions.REPORT_UNSUPPORTED })
 @InitializationHint(typeNames = {
         "io.goodforgod.simplelambda",
@@ -28,7 +29,7 @@ import org.mariadb.jdbc.util.Options;
                 "org.mariadb.jdbc.internal.com.send.authentication.SendPamAuthPacket",
         })
 @ReflectionHint(types = { Driver.class, DriverManager.class, Options.class })
-@ResourceHint(patterns = {
+@ResourceHint(include = {
         "META-INF/services/java.sql.Driver",
         "META-INF/services/org.mariadb.jdbc.authentication.AuthenticationPlugin",
         "META-INF/services/org.mariadb.jdbc.credential.CredentialPlugin",

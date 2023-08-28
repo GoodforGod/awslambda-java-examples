@@ -1,6 +1,6 @@
 # Quarkus Lambda
 
-Template for Quarkus.
+Example for Quarkus.
 
 ## Features
 - Micronaut Plugin for BOM and version management.

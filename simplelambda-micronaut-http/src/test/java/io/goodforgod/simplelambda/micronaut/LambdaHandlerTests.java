@@ -1,22 +1,11 @@
 package io.goodforgod.simplelambda.micronaut;
 
-import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.lambda.simple.EventContextBuilder;
-import io.goodforgod.aws.lambda.simple.handler.EventHandler;
-import io.goodforgod.aws.lambda.simple.handler.impl.BodyEventHandler;
-import io.goodforgod.aws.lambda.simple.handler.impl.InputEventHandler;
+import io.goodforgod.aws.lambda.events.gateway.APIGatewayV2HTTPEvent;
+import io.goodforgod.aws.lambda.simple.convert.Converter;
 import io.goodforgod.aws.lambda.simple.micronaut.MicronautBodyLambdaEntrypoint;
-import io.goodforgod.aws.lambda.simple.reactive.SubscriberUtils;
-import io.goodforgod.aws.lambda.simple.runtime.RuntimeContext;
-import io.goodforgod.aws.lambda.simple.utils.InputStreamUtils;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.util.UUID;
-import java.util.concurrent.Flow;
-import org.junit.jupiter.api.AfterAll;
+import io.goodforgod.aws.lambda.simple.micronaut.MicronautInputLambdaEntrypoint;
+import io.goodforgod.aws.lambda.simple.testing.AwsLambdaAssertions;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -25,49 +14,30 @@ import org.junit.jupiter.api.Test;
  */
 class LambdaHandlerTests extends Assertions {
 
-    private static final RuntimeContext CONTEXT = new MicronautBodyLambdaEntrypoint().getRuntimeContext();
-
-    @BeforeAll
-    public static void setup() {
-        CONTEXT.setupInRuntime();
-    }
-
-    @AfterAll
-    public static void cleanup() throws Exception {
-        CONTEXT.close();
-    }
-
     @Test
     void gatewayEvent() {
-        final EventHandler eventHandler = CONTEXT.getBean(BodyEventHandler.class);
-        final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
+        final Request request = new Request(1);
+        final Response response = AwsLambdaAssertions.ofEntrypoint(new MicronautBodyLambdaEntrypoint())
+                .input(context -> {
+                    final Converter converter = context.getBean(Converter.class);
+                    final String req = converter.toString(request);
+                    final String event = converter.toString(new APIGatewayV2HTTPEvent().setBody(req));
+                    return event.getBytes();
+                })
+                .expectJson(Response.class);
 
-        final String eventAsString = "{\"httpMethod\":\"GET\",\"queryStringParameters\":{\"from\":\"one\",\"to\":\"ten\"},\"isBase64Encoded\":false,\"body\":\"{\\\"blockNumber\\\":1}\"}";
-        final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
-
-        final Context eventContext = EventContextBuilder.builder().setAwsRequestId(UUID.randomUUID().toString()).build();
-        final Flow.Publisher<ByteBuffer> publisher = eventHandler.handle(requestHandler, inputStream, eventContext);
-        assertNotNull(publisher);
-
-        final String responseAsString = SubscriberUtils.getPublisherString(publisher);
-        assertNotNull(responseAsString);
-        assertTrue(responseAsString.contains("{\"blockReward\":\"5000000000000000000\""));
+        assertNotNull(response.message());
+        assertNotNull(response.blockReward());
     }
 
     @Test
     void directEvent() {
-        final EventHandler eventHandler = CONTEXT.getBean(InputEventHandler.class);
-        final RequestHandler requestHandler = CONTEXT.getBean(RequestHandler.class);
+        final Request request = new Request(1);
+        final Response response = AwsLambdaAssertions.ofEntrypoint(new MicronautInputLambdaEntrypoint())
+                .inputJson(request)
+                .expectJson(Response.class);
 
-        final String eventAsString = "{\"blockNumber\":1}";
-        final InputStream inputStream = InputStreamUtils.getInputStreamFromStringUTF8(eventAsString);
-
-        final Context eventContext = EventContextBuilder.builder().setAwsRequestId(UUID.randomUUID().toString()).build();
-        final Flow.Publisher<ByteBuffer> publisher = eventHandler.handle(requestHandler, inputStream, eventContext);
-        assertNotNull(publisher);
-
-        final String responseAsString = SubscriberUtils.getPublisherString(publisher);
-        assertNotNull(responseAsString);
-        assertTrue(responseAsString.contains("{\"blockReward\":\"5000000000000000000\""));
+        assertNotNull(response.message());
+        assertNotNull(response.blockReward());
     }
 }

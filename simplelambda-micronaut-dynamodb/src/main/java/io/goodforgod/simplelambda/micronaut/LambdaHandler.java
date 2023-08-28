@@ -26,7 +26,7 @@ import software.amazon.awssdk.services.dynamodb.model.PutItemResponse;
  * @since 31.07.2021
  */
 @ReflectionHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
-@NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class)
+@NativeImageHint(entrypoint = MicronautInputLambdaEntrypoint.class, name = "application")
 @Introspected
 @Singleton
 public class LambdaHandler implements RequestHandler<Request, Response> {

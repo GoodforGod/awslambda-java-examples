@@ -15,7 +15,7 @@ import org.apache.commons.logging.impl.SimpleLog;
  * @since 16.09.2021
  */
 @ReflectionHint(types = { LogFactory.class, LogFactoryImpl.class, SimpleLog.class })
-@NativeImageHint(entrypoint = LambdaEntrypoint.class)
+@NativeImageHint(entrypoint = LambdaEntrypoint.class, name = "application")
 @InitializationHint(typeNames = "io.goodforgod.simplelambda")
 public class LambdaEntrypoint extends AbstractInputLambdaEntrypoint {
 

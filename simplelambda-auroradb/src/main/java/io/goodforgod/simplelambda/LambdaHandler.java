@@ -2,7 +2,6 @@ package io.goodforgod.simplelambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import io.goodforgod.aws.lambda.simple.error.LambdaException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -53,7 +52,7 @@ public class LambdaHandler implements RequestHandler<Request, Response> {
                 logger.info("Statement executed..");
             }
         } catch (Exception e) {
-            throw new LambdaException(e.getMessage());
+            throw new IllegalStateException(e.getMessage());
         }
 
         return new Response(id, "Hello - " + request.name());
