@@ -43,3 +43,5 @@ Example of event to send to lambda:
 - https://spring.io/blog/2020/01/27/creating-docker-images-with-spring-boot-2-3-0-m1
 - https://paketo.io/docs/howto/java/
 - https://github.com/spring-projects-experimental/spring-native/tree/main/samples/cloud-function-aws
+- https://docs.spring.io/spring-cloud-function/docs/current/reference/html/aws-intro.html
+- https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html

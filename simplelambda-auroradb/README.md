@@ -1,4 +1,4 @@
-## Simple Lambda
+## Simple AWSLambda AuroraDB
 
 Java 17+ AWS Lambda Example with Micronaut DI support with GraalVM native compatibility.
 

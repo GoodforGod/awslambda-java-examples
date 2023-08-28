@@ -1,4 +1,4 @@
-## Simple Lambda
+## Simple AWSLambda HTTP
 
 Java 17+ AWS Lambda example with Micronaut DI support with GraalVM native compatibility.
 

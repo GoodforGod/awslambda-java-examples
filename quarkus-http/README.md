@@ -1,18 +1,12 @@
-# Quarkus Lambda
+# Quarkus AWSLambda HTTP
 
-Example for Quarkus.
+Example for Quarkus AWS Lambda.
 
-## Features
-- Micronaut Plugin for BOM and version management.
-- Spotless for Code Style check and apply.
-- .gitignore and .gitattributes for proper ignore and symbols check.
-- .editorconfig for simple configs code style and encoding UTF-8.
-- Proper Gradle and Gradle Wrapper configuration.
 
 ## Build
 
 ```shell
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-native-image:22.0.0-java17
+./gradlew quarkus-http:quarkusBuild -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:22.3-java17
 ```
 
 ## SAM
@@ -21,6 +15,16 @@ Example for Quarkus.
 sam local start-api -t sam.yaml -p 3000
 ```
 
+## Event Example
+
+Example of event to send to lambda:
+```json
+{
+  "name": "Steeven King"
+}
+```
+
 ## More
+- https://quarkus.io/guides/gradle-tooling
 - https://quarkus.io/guides/amazon-lambda
-- https://quarkus.io/guides/rest-client
+- https://quarkus.io/guides/writing-native-applications-tips

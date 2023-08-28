@@ -1,8 +1,8 @@
 package io.goodforgod.quarkus.http;
 
 import io.vertx.ext.web.handler.HttpException;
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 /**

@@ -1,6 +1,7 @@
 plugins {
     id "java"
     id "jacoco"
+    id "application"
 
     id "io.quarkus" version "3.3.0"
 }
@@ -50,7 +51,7 @@ test {
 quarkusBuild {
     nativeArgs {
         containerBuild = true
-        buildImage = "quay.io/quarkus/ubi-quarkus-native-image:22.0.0-java17"
+        buildImage = "quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:22.3-java17"
     }
 }
 
