@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: micronaut-function-dynamodb
+    default-charset: UTF-8
+
+jackson:
+  date-format: yyyy-MM-dd'T'HH:mm:ss.SSSXXX

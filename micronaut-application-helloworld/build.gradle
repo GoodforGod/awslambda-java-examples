@@ -1,0 +1,94 @@
+plugins {
+    id "java"
+    id "jacoco"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "io.micronaut.application" version "4.0.2"
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+mainClassName = "io.micronaut.function.aws.runtime.MicronautLambdaRuntime"
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+micronaut {
+    version("4.0.2")
+    processing {
+        incremental(true)
+        module(project.name)
+        group(project.group)
+        annotations("io.goodforgod.micronaut.*")
+    }
+}
+
+dependencies {
+    annotationProcessor "io.micronaut.validation:micronaut-validation-processor"
+    annotationProcessor "io.micronaut:micronaut-inject-java"
+    annotationProcessor "io.micronaut:micronaut-graal"
+    compileOnly "io.micronaut:micronaut-inject-java"
+    compileOnly "org.graalvm.nativeimage:svm"
+
+    implementation "io.goodforgod:slf4j-simple-logger:2.0.0"
+    implementation "io.micronaut.validation:micronaut-validation"
+    implementation "io.micronaut:micronaut-jackson-databind"
+    implementation "io.micronaut:micronaut-http-client"
+    implementation "io.micronaut.aws:micronaut-function-aws"
+    implementation "io.micronaut.aws:micronaut-function-aws-api-proxy"
+    implementation "io.micronaut.aws:micronaut-function-aws-custom-runtime"
+
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+
+    testImplementation "io.micronaut.test:micronaut-test-junit5"
+    testImplementation "io.micronaut.test:micronaut-test-core"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    testImplementation "org.junit.jupiter:junit-jupiter-api"
+    testImplementation "org.junit.jupiter:junit-jupiter-params"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+        exceptionFormat("full")
+    }
+
+    reports {
+        html.required = false
+        junitXml.required = false
+    }
+}
+
+jar.enabled = true
+shadowJar {
+    mergeServiceFiles()
+    manifest {
+        attributes "Main-Class": mainClassName
+        attributes "Implementation-Version": artifactVersion
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding("UTF-8")
+    options.incremental(true)
+    options.fork = true
+}
+
+javadoc {
+    options.encoding = "UTF-8"
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption("html5", true)
+    }
+}
+
+check.dependsOn jacocoTestReport
+jacocoTestReport {
+    reports {
+        xml.required = true
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
