@@ -1,9 +1,0 @@
-micronaut:
-  application:
-    name: simplelambda-gradle-micronaut-dynamodb
-    default-charset: UTF-8
-
-gson:
-  field-naming-policy: identity
-  long-serialization-policy: default
-

@@ -1,0 +1,9 @@
+micronaut:
+  application:
+    name: simplelambda-micronaut-dynamodb
+    default-charset: UTF-8
+
+gson:
+  field-naming-policy: identity
+  long-serialization-policy: default
+
