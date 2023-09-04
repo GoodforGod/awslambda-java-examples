@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
+../gradlew quarkus-helloworld:build -Dquarkus.package.type=native -Dquarkus.native.container-build=true

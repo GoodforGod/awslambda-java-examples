@@ -1,0 +1,116 @@
+name: Benchmark Build-Time
+
+on:
+  push:
+    paths:
+      - '**/workflows/*.yml'
+      - '**/java/**'
+      - '*.java'
+      - '*.gradle'
+      - '*.properties'
+    branches:
+      - master
+
+jobs:
+  micronaut-application:
+    runs-on: ubuntu-latest
+    name: Micronaut Application
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build Jar
+        run: './gradlew micronaut-application-helloworld:shadowjar'
+      - name: Build GraalVM
+        run: 'docker build -t micronaut-application-helloworld .'
+
+
+  micronaut-function:
+    runs-on: ubuntu-latest
+    name: Micronaut Function
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build Jar
+        run: './gradlew micronaut-function-helloworld:shadowJar'
+      - name: Build GraalVM
+        run: 'docker build -t micronaut-function-helloworld .'
+
+
+  spring:
+    runs-on: ubuntu-latest
+    name: Spring
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build Jar & GraalVM
+        run: './gradlew spring-helloworld:bootBuildImage'
+
+
+  quarkus:
+    runs-on: ubuntu-latest
+    name: Quarkus
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build Jar & GraalVM
+        run: './gradlew quarkus-helloworld:build -Dquarkus.package.type=native -Dquarkus.native.container-build=true'
+
+
+  simplelambda:
+    runs-on: ubuntu-latest
+    name: SimpleLambda
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build Jar
+        run: './gradlew simplelambda-helloworld:shadowJar'
+      - name: Build GraalVM
+        run: 'docker build -t simplelambda-helloworld .'
+
+
+  simplelambda-micronaut:
+    runs-on: ubuntu-latest
+    name: SimpleLambda Micronaut
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+
+      - name: Build Jar
+        run: './gradlew simplelambda-micronaut-helloworld:shadowJar'
+      - name: Build GraalVM
+        run: 'docker build -t simplelambda-micronaut-helloworld .'

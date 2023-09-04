@@ -2,7 +2,7 @@ plugins {
     id "java"
     id "jacoco"
     id "com.github.johnrengelman.shadow" version "7.1.2"
-    id "io.micronaut.application" version "4.0.2"
+    id "io.micronaut.application" version "4.0.3"
 }
 
 repositories {
@@ -16,7 +16,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 micronaut {
-    version("4.0.2")
+    version("4.0.3")
     processing {
         incremental(true)
         module(project.name)

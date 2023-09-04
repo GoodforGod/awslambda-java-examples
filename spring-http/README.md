@@ -45,3 +45,4 @@ Example of event to send to lambda:
 - https://github.com/spring-projects-experimental/spring-native/tree/main/samples/cloud-function-aws
 - https://docs.spring.io/spring-cloud-function/docs/current/reference/html/aws-intro.html
 - https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html
+- https://paketo.io/docs/howto/java/#build-an-app-as-a-graalvm-native-image-application

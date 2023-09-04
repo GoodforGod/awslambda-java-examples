@@ -13,12 +13,12 @@ Building Micronaut AWSLambda native executable is quite easy and require 3 steps
 
 2) Build native executable via Docker:
 ```shell
-docker build -t micronaut-application-dynamodb .
+docker build -t micronaut-function-dynamodb .
 ```
 
 3) Extract native executable from container:
 ```shell
-docker run --rm --entrypoint cat micronaut-application-dynamodb /home/application/function.zip > build/function.zip
+docker run --rm --entrypoint cat micronaut-function-dynamodb /home/application/function.zip > build/function.zip
 ```
 
 ## SAM

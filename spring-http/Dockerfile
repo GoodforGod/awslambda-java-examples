@@ -1,4 +1,4 @@
-FROM spring-http:1.0.0-SNAPSHOT
+FROM spring-http:1.0.0
 
 USER root
 

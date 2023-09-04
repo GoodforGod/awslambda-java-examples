@@ -3,7 +3,7 @@ plugins {
     id "jacoco"
     id "application"
     id "com.github.johnrengelman.shadow" version "7.1.2"
-    id "io.micronaut.application" version "4.0.2"
+    id "io.micronaut.application" version "4.0.3"
 }
 
 repositories {
@@ -17,7 +17,7 @@ sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 
 micronaut {
-    version("4.0.2")
+    version("4.0.3")
     processing {
         incremental(true)
         module(project.name)
@@ -36,7 +36,7 @@ dependencies {
     compileOnly "org.graalvm.nativeimage:svm"
 
     implementation "io.goodforgod:slf4j-simple-logger:2.0.0"
-    implementation "io.goodforgod:simple-awslambda-micronaut:1.0.0-SNAPSHOT"
+    implementation "io.goodforgod:simple-awslambda-micronaut:1.0.0"
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testImplementation "io.micronaut:micronaut-inject-java"
