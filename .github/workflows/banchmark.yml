@@ -27,7 +27,7 @@ jobs:
       - name: Build Jar
         run: './gradlew micronaut-application-helloworld:shadowjar'
       - name: Build GraalVM
-        run: 'docker build -t micronaut-application-helloworld .'
+        run: 'docker build -t micronaut-application-helloworld micronaut-application-helloworld'
 
 
   micronaut-function:
@@ -45,7 +45,7 @@ jobs:
       - name: Build Jar
         run: './gradlew micronaut-function-helloworld:shadowJar'
       - name: Build GraalVM
-        run: 'docker build -t micronaut-function-helloworld .'
+        run: 'docker build -t micronaut-function-helloworld micronaut-function-helloworld'
 
 
   spring:
@@ -95,7 +95,7 @@ jobs:
       - name: Build Jar
         run: './gradlew simplelambda-helloworld:shadowJar'
       - name: Build GraalVM
-        run: 'docker build -t simplelambda-helloworld .'
+        run: 'docker build -t simplelambda-helloworld simplelambda-helloworld'
 
 
   simplelambda-micronaut:
@@ -113,4 +113,4 @@ jobs:
       - name: Build Jar
         run: './gradlew simplelambda-micronaut-helloworld:shadowJar'
       - name: Build GraalVM
-        run: 'docker build -t simplelambda-micronaut-helloworld .'
+        run: 'docker build -t simplelambda-micronaut-helloworld simplelambda-micronaut-helloworld'
