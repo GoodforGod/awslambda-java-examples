@@ -24,6 +24,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Prepare (Exclude from data)
+        run: 'docker pull goodforgod/amazonlinux-graalvm:22.3.0-java17-amd64'
       - name: Build Jar
         run: './gradlew micronaut-application-helloworld:shadowjar'
       - name: Build GraalVM
@@ -42,6 +44,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Prepare (Exclude from data)
+        run: 'docker pull goodforgod/amazonlinux-graalvm:22.3.0-java17-amd64'
       - name: Build Jar
         run: './gradlew micronaut-function-helloworld:shadowJar'
       - name: Build GraalVM
@@ -60,6 +64,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Prepare (Exclude from data)
+        run: 'docker pull gcr.io/paketo-buildpacks/java-native-image:8.16.0'
       - name: Build Jar & GraalVM
         run: './gradlew spring-helloworld:bootBuildImage'
 
@@ -76,6 +82,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Prepare (Exclude from data)
+        run: 'docker pull quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:22.3-java17'
       - name: Build Jar & GraalVM
         run: './gradlew quarkus-helloworld:build -Dquarkus.package.type=native -Dquarkus.native.container-build=true'
 
@@ -92,6 +100,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Prepare (Exclude from data)
+        run: 'docker pull goodforgod/amazonlinux-graalvm:22.3.0-java17-amd64'
       - name: Build Jar
         run: './gradlew simplelambda-helloworld:shadowJar'
       - name: Build GraalVM
@@ -110,6 +120,8 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Prepare (Exclude from data)
+        run: 'docker pull goodforgod/amazonlinux-graalvm:22.3.0-java17-amd64'
       - name: Build Jar
         run: './gradlew simplelambda-micronaut-helloworld:shadowJar'
       - name: Build GraalVM
