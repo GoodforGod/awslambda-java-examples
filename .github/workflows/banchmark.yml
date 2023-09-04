@@ -2,12 +2,12 @@ name: Benchmark Build-Time
 
 on:
   push:
-#    paths:
-#      - '**/workflows/*.yml'
-#      - '**/java/**'
-#      - '*.java'
-#      - '*.gradle'
-#      - '*.properties'
+    paths:
+      - '**/workflows/*.yml'
+      - '**/java/**'
+      - '*.java'
+      - '*.gradle'
+      - '*.properties'
     branches:
       - master
 
