@@ -46,3 +46,5 @@ Example of event to send to lambda:
 - https://docs.spring.io/spring-cloud-function/docs/current/reference/html/aws-intro.html
 - https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html
 - https://paketo.io/docs/howto/java/#build-an-app-as-a-graalvm-native-image-application
+- https://github.com/spring-cloud/spring-cloud-function/tree/main/spring-cloud-function-samples/function-sample-aws-routing
+- https://docs.spring.io/spring-cloud-function/docs/3.1.3/reference/html/spring-cloud-function.html#_function_routing_and_filtering
